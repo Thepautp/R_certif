@@ -1,0 +1,2 @@
+module TrainingPagesHelper
+end
