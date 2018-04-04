@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404045715) do
+ActiveRecord::Schema.define(version: 20180404071235) do
 
   create_table "categories", force: :cascade do |t|
     t.string "label"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20180404045715) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer "categorie"
+    t.integer "categorie_id"
     t.string "text"
     t.string "good_answer"
     t.string "bad_answer"
