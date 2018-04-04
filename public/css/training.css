@@ -13,3 +13,6 @@
   flex-direction: column;
   margin: 25px;
 }
+.question_cat {
+  font-style: italic;
+}

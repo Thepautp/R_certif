@@ -1,18 +1,19 @@
 <div class="response_wrap">
+  <% if response_num == 1 %>
   <div class="unique_response">
     <ul>
-      <li><%= radio_button_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= radio_button_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= radio_button_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= radio_button_tag "test", "0", false %> <%= "Possible answer" %></li>
+      <% answers.each do |a| %>
+        <li><%= radio_button_tag "response", a.id, false %> <%= a.text %></li>
+      <% end %>
     </ul>
   </div>
+  <% else %>
   <div class="multiple_response">
     <ul>
-      <li><%= check_box_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= check_box_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= check_box_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= check_box_tag "test", "0", false %> <%= "Possible answer" %></li>      
+      <% answers.each do |a| %>
+        <li><%= radio_button_tag "response", a.id, false %> <%= a.text %></li>
+      <% end %>
     </ul>
   </div>
+  <% end %>
 </div>
