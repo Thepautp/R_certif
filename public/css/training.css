@@ -1,0 +1,15 @@
+/* PARTIAL: question_label */
+.question_wrap {
+  display: flex;
+  flex-direction: row;
+}
+.question_data {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+}
+.question_detail {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+}
