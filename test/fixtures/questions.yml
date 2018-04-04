@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  categorie: 1
+  text: MyString
+  good_answer: MyString
+  bad_answer: MyString
+  rank: 1
+
+two:
+  categorie: 1
+  text: MyString
+  good_answer: MyString
+  bad_answer: MyString
+  rank: 1
