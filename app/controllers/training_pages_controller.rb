@@ -9,21 +9,21 @@ class TrainingPagesController < ApplicationController
   end
   
   def result
-    if params[:response]
-      response = params[:response][:answer_id].split(",")
-      user_answer = response[0]
       question_id = params[:response][:question_id]
       @question = Question.find(question_id)                           #asked question
       good_answer_ids = @question.good_answer.split(",").map!{|s| s}  #array with good_answer ids
       bad_answer_ids = @question.bad_answer.split(",").map!{|s| s}    #array with bad_answer ids
       @bad_answers = Answer.find(bad_answer_ids)
       @good_answers = Answer.find(good_answer_ids)                    #params is an array for always having array on output
-      if good_answer_ids.size == 1
-        @is_good_answer = false
-        @is_good_answer = true if response[0] == good_answer_ids[0]
-      else
-        # TODO: multiple_response case
+      if params[:response][:answer_id]
+        response = params[:response][:answer_id].split(",")
+        user_answer = response[0]
+        if good_answer_ids.size == 1
+          @is_good_answer = false
+          @is_good_answer = true if response[0] == good_answer_ids[0]
+        else
+          # TODO: multiple_response case
+        end
       end
-    end    
   end
 end
