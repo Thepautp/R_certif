@@ -1,4 +1,13 @@
+/* application */
+#wrapper{
+  width: 70%;
+  margin: auto;
+  justify-content: center;
+}
 /* PARTIAL: question_label */
+.question_wrap, .response_wrap {
+  width: 100%;
+}
 .question_wrap {
   display: flex;
   flex-direction: row;
@@ -15,4 +24,19 @@
 }
 .question_cat {
   font-style: italic;
+}
+.result_wrap {
+  text-align: center;
+}
+.result {
+  margin: 30px 0px;
+  text-align: center;
+}
+.all_good {
+  border: 1px solid #4f9f99;
+  margin-bottom: 30px;  
+}
+.all_bad {
+  border: 1px solid #4f9f99;
+  margin-bottom: 30px;
 }
