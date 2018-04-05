@@ -27,4 +27,12 @@ class TrainingPagesController < ApplicationController
         end
       end
   end
+  
+  def add_question
+    
+  end
+  
+  def add_result
+    
+  end
 end
