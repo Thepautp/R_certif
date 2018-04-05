@@ -1,19 +1,26 @@
 <div class="response_wrap">
-  <% if response_num == 1 %>
-  <div class="unique_response">
-    <ul>
-      <% answers.each do |a| %>
-        <li><%= radio_button_tag "response", a.id, false %> <%= a.text %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% else %>
-  <div class="multiple_response">
-    <ul>
-      <% answers.each do |a| %>
-        <li><%= radio_button_tag "response", a.id, false %> <%= a.text %></li>
-      <% end %>
-    </ul>
-  </div>
+  <%= form_for(:response, url: result_path, html: {id: 'firm_response'}) do |f| %>
+    <% if response_num == 1 %>
+    <div class="unique_response">
+      <ul>
+        <% answers.each do |a| %>
+          <li><%= f.radio_button :answer_id, "#{a.id},#{a.text}", checked: false %><%= a.text %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% else %>
+    <div class="multiple_response">
+      <ul>
+        <% answers.each do |a| %>
+          <li><%= radio_button_tag "response", a.id, false, data: {response: a.text} %> <%= a.text %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="question_submit_wrap">
+      <div>
+        <%= submit_tag "Validate", id: "btn_submit_response", onclick: "checkResponse();"%>
+      </div>
+    </div>
   <% end %>
 </div>

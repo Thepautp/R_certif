@@ -7,4 +7,11 @@ class TrainingPagesController < ApplicationController
     @answers = Answer.find(good_answer << bad_answer)
     @answers.shuffle!
   end
+  
+  def result
+    if params[:response]
+      response = params[:response][:answer_id].split(",")
+      puts response      
+    end
+  end
 end
