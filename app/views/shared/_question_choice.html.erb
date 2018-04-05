@@ -1,8 +1,5 @@
 <script type="text/javascript">
   // document.getElementById("btn_submit_response").disabled = true;
-  
-  
-  
   function hasOneChecked(){
     var checkboxes = document.getElementsByTagName('input');
     for (var i = 0; i < checkboxes.length; i++) {
@@ -10,8 +7,7 @@
         document.getElementById("btn_submit_response").disabled = false;
       }
     }
-  }
-  
+  }  
   function checkResponse(){
     var elem =  document.getElementsByTagName("strong")[0];
     var num_expected_answer = elem.innerHTML;
@@ -31,10 +27,8 @@
     }
     if (isChecked) {
       alert("choix fait");
-    
     }else{
       alert("no choix");
-      
     }
   }
 </script>
@@ -59,8 +53,9 @@
     </div>
     <% end %>
     <div class="question_submit_wrap">
+      <%= f.hidden_field :question_id, value: question.id %>
       <div>
-        <%= submit_tag "Validate", id: "btn_submit_response", onclick: "checkResponse();"%>
+        <%= submit_tag "Validate", id: "btn_submit_response"%>
       </div>
     </div>
   <% end %>
