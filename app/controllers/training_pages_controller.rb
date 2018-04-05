@@ -29,7 +29,7 @@ class TrainingPagesController < ApplicationController
   end
   
   def add_question
-    
+    @categories = Categorie.all
   end
   
   def add_result
