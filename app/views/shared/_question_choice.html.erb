@@ -1,38 +1,3 @@
-<script type="text/javascript">
-  // document.getElementById("btn_submit_response").disabled = true;
-  function hasOneChecked(){
-    var checkboxes = document.getElementsByTagName('input');
-    for (var i = 0; i < checkboxes.length; i++) {
-      if (checkboxes[i].checked == true) {
-        document.getElementById("btn_submit_response").disabled = false;
-      }
-    }
-  }  
-  function checkResponse(){
-    var elem =  document.getElementsByTagName("strong")[0];
-    var num_expected_answer = elem.innerHTML;
-    var isChecked = false;
-    var user_choice = "";
-    switch (num_expected_answer) {
-      case "1":
-        var checkboxes = document.getElementsByTagName('input');
-        for (var i = 0; i < checkboxes.length; i++) {
-          if (checkboxes[i].checked == true) {
-            isChecked = true;
-            user_choice = checkboxes[i].getAttribute("data-response");
-          }
-        }
-        break;
-      default:
-    }
-    if (isChecked) {
-      alert("choix fait");
-    }else{
-      alert("no choix");
-    }
-  }
-</script>
-
 <div class="response_wrap">
   <%= form_for(:response, url: result_path, html: {id: 'firm_response'}) do |f| %>
     <% if response_num == 1 %>
