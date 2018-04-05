@@ -33,6 +33,23 @@ class TrainingPagesController < ApplicationController
   end
   
   def add_result
-    
+    wrong_answers_arr = []
+    is_correct_question = true
+    params[:add_question].each do |k,v|
+      is_correct_question = false if v.blank?
+    end
+    if is_correct_question
+      good_answer_to_add = Answer.new(text: params[:add_question][:good_answer], reason: "nope")
+      good_answer_to_add.save!
+      wrong_answers_arr = []
+      4.times do |i|
+        temp = Answer.new(text: params[:add_question]["bad_answer_#{i+1}"])
+        temp.save!
+        wrong_answers_arr << temp.id.to_s
+      end
+      wrong_answers = wrong_answers_arr.join(",")
+      question_to_add = Question.new(categorie_id: params[:add_question][:categorie].to_i, text: params[:add_question][:text], good_answer: good_answer_to_add.id.to_s, bad_answer: wrong_answers)
+      question_to_add.save
+    end
   end
 end
