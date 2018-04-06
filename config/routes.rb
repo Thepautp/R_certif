@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "training", to: "training_pages#new"
   get "admin", to: "training_pages#add_question"
   get "admin/question", to: "training_pages#question_manage"
+  post "admin/question", to: "training_pages#question_manage"
   get "admin/ajax", to: "training_pages#ajax_api"
   post "admin/result", to: "training_pages#add_result"
   post "result", to: "training_pages#result"

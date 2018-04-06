@@ -58,7 +58,23 @@ class TrainingPagesController < ApplicationController
   
   def question_manage
     @questions = Question.all
-    
+    if params[:question_update]
+      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer").find_by_id(params[:question_update][:question])
+      good_answers = question.good_answer.split(",").map!{ |s| s.to_i}  #split string into array of integer for sql request
+      bad_answers = question.bad_answer.split(",").map!{ |s| s.to_i}    #split string into array of integer for sql request
+      good_answers.each do |g|
+        answer = Answer.find(g)
+        p answer
+      end
+      p "-----"
+      bad_answers.each_with_index do |b,i|
+        answer = Answer.find(b)
+        puts b
+        puts "#{answer.text} || #{params[:wrong_answer_text][i]}"
+        
+        
+      end
+    end
     
   end
   
