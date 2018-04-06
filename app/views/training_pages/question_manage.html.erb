@@ -12,6 +12,18 @@
         },
         success: function (response) {
           console.log(response);
+          var good_answers = response["good"];
+          var wrong_answers = response["wrong"]
+          $(".good_answer_part").empty();
+          $(".wrong_answer_part").empty();
+          for(var i=0; i< good_answers.length; i++){
+             $(".good_answer_part").append('<input type="text" name="good_answer_text" value="'+good_answers[i]["text"]+'">');
+             $(".good_answer_part").append('<input type="text" name="good_answer_reason" value="'+good_answers[i]["reason"]+'">');
+           }
+           for(var i=0; i< wrong_answers.length; i++){
+             $(".wrong_answer_part").append('<input type="text" name="wrong_answer_text" value="'+wrong_answers[i]["text"]+'">');
+             $(".wrong_answer_part").append('<input type="text" name="wrong_answer_reason" value="'+wrong_answers[i]["reason"]+'">');
+            }
         }
       });//-end ajax
     });
@@ -28,7 +40,6 @@
       </div>
       <div class="question_detail_part">
         <div class="good_answer_part">
-          
         </div>
         <div class="wrong_answer_part">
           
