@@ -57,7 +57,26 @@ class TrainingPagesController < ApplicationController
   end
   
   def question_manage
+    @questions = Question.all
     
+    
+  end
+  
+  def ajax_api
+    if params[:question_id]
+      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer").find_by_id(params[:question_id])
+      good_answer = question.good_answer.split(",").map!{ |s| s.to_i}  #split string into array of integer for sql request
+      bad_answer = question.bad_answer.split(",").map!{ |s| s.to_i}    #split string into array of integer for sql request
+      all_good_answer = Answer.find(good_answer)
+      all_wrong_answer = Answer.find(bad_answer)
+    end
+    if request.xhr?
+      respond_to do |format|
+        format.json {
+          render json: {good: all_good_answer, wrong: all_wrong_answer}
+        }
+      end
+    end
   end
 
 end
