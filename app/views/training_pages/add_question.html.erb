@@ -1,4 +1,9 @@
 <div class="add_question_wrap">
+  <% if @error %>
+    <div class="error">
+      <%= @error %>    
+    </div>
+  <% end %>
   <%= form_for(:add_question, url: admin_result_path, html: {id: 'form_add_question'}) do |f| %>
     <div class="">
       <%= f.label "Categorie:" %>

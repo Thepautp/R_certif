@@ -30,6 +30,7 @@ class TrainingPagesController < ApplicationController
   
   def add_question
     @categories = Categorie.all
+    @error = params[:error] if params[:error]
   end
   
   def add_result
@@ -50,6 +51,8 @@ class TrainingPagesController < ApplicationController
       wrong_answers = wrong_answers_arr.join(",")
       question_to_add = Question.new(categorie_id: params[:add_question][:categorie].to_i, text: params[:add_question][:text], good_answer: good_answer_to_add.id.to_s, bad_answer: wrong_answers)
       question_to_add.save
+    else
+      redirect_to controler: "training_pages", action: "add_question", error: "Empty field"
     end
   end
 end
