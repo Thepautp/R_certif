@@ -17,12 +17,18 @@
           $(".good_answer_part").empty();
           $(".wrong_answer_part").empty();
           for(var i=0; i< good_answers.length; i++){
-             $(".good_answer_part").append('<input type="text" name="good_answer_text" value="'+good_answers[i]["text"]+'">');
-             $(".good_answer_part").append('<input type="text" name="good_answer_reason" value="'+good_answers[i]["reason"]+'">');
+             $(".good_answer_part").append('<div class="answer_container ga_'+i+'"></div>')
+             $('.ga_'+i+'').append('<div class="left_part ">Good answer '+(i+1)+':</div>')
+             $('.ga_'+i+'').append('<div class="right_part rp_ga_'+i+'"></div>')
+             $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_text" value="' + good_answers[i]["text"] + '">');
+             $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_reason" value="' + good_answers[i]["reason"] + '">');
            }
            for(var i=0; i< wrong_answers.length; i++){
-             $(".wrong_answer_part").append('<input type="text" name="wrong_answer_text" value="'+wrong_answers[i]["text"]+'">');
-             $(".wrong_answer_part").append('<input type="text" name="wrong_answer_reason" value="'+wrong_answers[i]["reason"]+'">');
+             $(".wrong_answer_part").append('<div class="answer_container wa_'+i+'"></div>') 
+              $('.wa_'+i+'').append('<div class="left_part ">Wrong answer '+(i+1)+':</div>')
+             $('.wa_'+i+'').append('<div class="right_part rp_wa_'+i+'"></div>')
+             $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_text" value="' + wrong_answers[i]["text"] + '">');
+             $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_reason" value="' + wrong_answers[i]["reason"] + '">');
             }
         }
       });//-end ajax

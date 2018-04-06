@@ -40,3 +40,37 @@
   border: 1px solid #4f9f99;
   margin-bottom: 30px;
 }
+
+/* question_manage */
+.question_manage {
+  display: flex;
+  flex-direction: column;
+}
+.change_panel {
+  display: flex;
+  flex-direction: row;
+}
+.question_part {
+  margin-right: 30px;
+}
+.question_detail_part {
+  display: flex;
+  flex-direction: column;
+  
+}
+.good_answer_part, .wrong_answer_part {
+  display: flex;
+  flex-direction: column;
+}
+.good_answer_part {
+  
+}
+.answer_container{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+.right_part {
+  display: flex;
+  flex-direction: column;
+}
