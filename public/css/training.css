@@ -70,7 +70,11 @@
   flex-direction: row;
   margin-bottom: 30px;
 }
+.left_part {
+  width: 20%;
+}
 .right_part {
   display: flex;
   flex-direction: column;
+  width: 500px;
 }

@@ -1,6 +1,6 @@
 <script type="text/javascript">
   $(document).ready(function() {
-    $("#question_update_categorie").change(function(){
+    $("#question_update_question").change(function(){
       var question_id = $(this).val();
       $.ajax({
         url: "/admin/ajax",
@@ -20,15 +20,15 @@
              $(".good_answer_part").append('<div class="answer_container ga_'+i+'"></div>')
              $('.ga_'+i+'').append('<div class="left_part ">Good answer '+(i+1)+':</div>')
              $('.ga_'+i+'').append('<div class="right_part rp_ga_'+i+'"></div>')
-             $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_text" value="' + good_answers[i]["text"] + '">');
-             $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_reason" value="' + good_answers[i]["reason"] + '">');
+             $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_text[]" value="' + good_answers[i]["text"] + '">');
+             $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_reason[]" value="' + good_answers[i]["reason"] + '">');
            }
            for(var i=0; i< wrong_answers.length; i++){
              $(".wrong_answer_part").append('<div class="answer_container wa_'+i+'"></div>') 
               $('.wa_'+i+'').append('<div class="left_part ">Wrong answer '+(i+1)+':</div>')
              $('.wa_'+i+'').append('<div class="right_part rp_wa_'+i+'"></div>')
-             $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_text" value="' + wrong_answers[i]["text"] + '">');
-             $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_reason" value="' + wrong_answers[i]["reason"] + '">');
+             $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_text[]" value="' + wrong_answers[i]["text"] + '">');
+             $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_reason[]" value="' + wrong_answers[i]["reason"] + '">');
             }
         }
       });//-end ajax
@@ -42,7 +42,7 @@
     <div class="change_panel">
       <div class="question_part">          
           <%= f.label "Choose a question:" %>
-          <%= f.select :categorie, options_for_select(@questions.collect {|p| [ p.text, p.id]}), include_blank: "~~~~ Choose one question ~~~~"  %>
+          <%= f.select :question, options_for_select(@questions.collect {|p| [ p.text, p.id]}), include_blank: "~~~~ Choose one question ~~~~"  %>
       </div>
       <div class="question_detail_part">
         <div class="good_answer_part">
@@ -53,7 +53,7 @@
       </div>
     </div>
     <div class="submit_panel">
-      
+      <%= submit_tag "Update Question", id: "btn_update"%>
     </div>
     <% end %>
   </div>
