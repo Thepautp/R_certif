@@ -59,8 +59,5 @@ class TrainingPagesController < ApplicationController
   def question_manage
     
   end
-  
-  def answer_manage
-    
-  end
+
 end
