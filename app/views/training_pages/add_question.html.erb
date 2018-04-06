@@ -28,4 +28,8 @@
       <%= submit_tag "Add Question", id: "btn_submit_add"%>
     </div>
   <% end %>
+  <div class="q_manage btn">
+    <%= button_to "Manage question", admin_question_path, method: :get, class: "to_question_btn"%>
+    <%= button_to "Manage answer", admin_answer_path, method: :get, class: "to_question_btn"%>
+  </div>
 </div>

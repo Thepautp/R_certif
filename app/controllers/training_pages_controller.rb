@@ -55,4 +55,12 @@ class TrainingPagesController < ApplicationController
       redirect_to controler: "training_pages", action: "add_question", error: "Empty field"
     end
   end
+  
+  def question_manage
+    
+  end
+  
+  def answer_manage
+    
+  end
 end
