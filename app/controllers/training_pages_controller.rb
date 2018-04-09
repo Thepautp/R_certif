@@ -62,20 +62,19 @@ class TrainingPagesController < ApplicationController
       question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer").find_by_id(params[:question_update][:question])
       good_answers = question.good_answer.split(",").map!{ |s| s.to_i}  #split string into array of integer for sql request
       bad_answers = question.bad_answer.split(",").map!{ |s| s.to_i}    #split string into array of integer for sql request
-      good_answers.each do |g|
-        answer = Answer.find(g)
-        p answer
+      good_answers.each_with_index do |good, i|
+        answer = Answer.find(good)
+        if params[:good_answer_text][i] != answer.text || params[:good_answer_reason][i] != answer.reason
+          answer.update_attributes(text: params[:good_answer_text][i], reason: params[:good_answer_reason][i])
+        end        
       end
-      p "-----"
-      bad_answers.each_with_index do |b,i|
-        answer = Answer.find(b)
-        puts b
-        puts "#{answer.text} || #{params[:wrong_answer_text][i]}"
-        
-        
+      bad_answers.each_with_index do |bad,i|
+        answer = Answer.find(bad)
+        if params[:wrong_answer_text][i] != answer.text || params[:wrong_answer_reason][i] != answer.reason
+          answer.update_attributes(text: params[:wrong_answer_text][i], reason: params[:wrong_answer_reason][i])
+        end
       end
     end
-    
   end
   
   def ajax_api
@@ -94,5 +93,5 @@ class TrainingPagesController < ApplicationController
       end
     end
   end
-
+  
 end
