@@ -23,7 +23,12 @@ class TrainingPagesController < ApplicationController
           @is_good_answer = false
           @is_good_answer = true if response[0] == good_answer_ids[0]
         else
-          # TODO: multiple_response case
+          if (user_answer.length == good_answer_ids.length)
+            x = user_answer - good_answer_ids
+            @is_good_answer = x.empty? ? true : false
+          else
+            @is_good_answer = false
+          end
         end
       end
   end
@@ -40,16 +45,23 @@ class TrainingPagesController < ApplicationController
       is_correct_question = false if v.blank?
     end
     if is_correct_question
-      good_answer_to_add = Answer.new(text: params[:add_question][:good_answer], reason: "nope")
-      good_answer_to_add.save!
+      good_answers_arr = []
+      3.times do |i|
+        temp = Answer.new(text: params[:add_question]["good_answer_#{i+1}"])
+        temp.save!
+        good_answers_arr << temp.id.to_s
+      end
+      # good_answer_to_add = Answer.new(text: params[:add_question][:good_answer], reason: "nope")
+      # good_answer_to_add.save!
       wrong_answers_arr = []
       4.times do |i|
         temp = Answer.new(text: params[:add_question]["bad_answer_#{i+1}"])
         temp.save!
         wrong_answers_arr << temp.id.to_s
       end
+      good_answers = good_answers_arr.join(",")
       wrong_answers = wrong_answers_arr.join(",")
-      question_to_add = Question.new(categorie_id: params[:add_question][:categorie].to_i, text: params[:add_question][:text], good_answer: good_answer_to_add.id.to_s, bad_answer: wrong_answers)
+      question_to_add = Question.new(categorie_id: params[:add_question][:categorie].to_i, text: params[:add_question][:text], good_answer: good_answers, bad_answer: wrong_answers)
       question_to_add.save
     else
       redirect_to controler: "training_pages", action: "add_question", error: "Empty field"

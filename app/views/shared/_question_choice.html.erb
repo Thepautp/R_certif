@@ -12,7 +12,7 @@
     <div class="multiple_response">
       <ul>
         <% answers.each do |a| %>
-          <li><%= radio_button_tag "response", a.id, false, data: {response: a.text} %> <%= a.text %></li>
+          <li><%= f.check_box :answer_id, {:multiple => true}, "#{a.id}", nil %> <%= f.label a.text %></li>
         <% end %>
       </ul>
     </div>
