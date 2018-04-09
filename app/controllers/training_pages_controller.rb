@@ -65,7 +65,10 @@ class TrainingPagesController < ApplicationController
       end
       good_answers = good_answers_arr.join(",")
       wrong_answers = wrong_answers_arr.join(",")
-      question_to_add = Question.new(categorie_id: params[:add_question][:categorie].to_i, text: params[:add_question][:text], good_answer: good_answers, bad_answer: wrong_answers)
+      question_to_add = Question.new( categorie_id: params[:add_question][:categorie].to_i,
+                                      text: params[:add_question][:text], good_answer: good_answers,
+                                      bad_answer: wrong_answers,
+                                      rank: params[:add_question][:level])
       question_to_add.save
       redirect_to controler: "training_pages", action: "add_question", msg: "Question created with success"
     else
