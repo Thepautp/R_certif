@@ -33,9 +33,11 @@
   flex-direction: column;
   margin: 25px;
 }
-.question_cat {
+.question_cat, .question_rank {
+  text-align: center;
   font-style: italic;
 }
+
 .del_field, .add_field{
   cursor: pointer;
   margin-left: 15px;

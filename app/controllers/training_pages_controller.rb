@@ -1,6 +1,6 @@
 class TrainingPagesController < ApplicationController
   def new
-    all_question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer").all
+    all_question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank").all
     @question = all_question[rand(all_question.size)]
     bad_answer = @question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
     good_answer = @question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
@@ -79,7 +79,7 @@ class TrainingPagesController < ApplicationController
   def question_manage
     @questions = Question.all
     if params[:question_update]
-      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer").find_by_id(params[:question_update][:question])
+      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank").find_by_id(params[:question_update][:question])
       good_answers = question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
       bad_answers = question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
       good_answers.each_with_index do |good, i|
@@ -94,12 +94,16 @@ class TrainingPagesController < ApplicationController
           answer.update_attributes(text: params[:wrong_answer_text][i], reason: params[:wrong_answer_reason][i])
         end
       end
+      rank = params[:question_update][:level].to_i
+      if question.rank != rank
+        question.update_attribute(:rank, rank)
+      end
     end
   end
   
   def ajax_api
     if params[:question_id]
-      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer").find_by_id(params[:question_id])
+      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank").find_by_id(params[:question_id])
       good_answer = question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
       bad_answer = question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
       all_good_answer = Answer.find(good_answer)
@@ -108,7 +112,7 @@ class TrainingPagesController < ApplicationController
     if request.xhr?
       respond_to do |format|
         format.json {
-          render json: {good: all_good_answer, wrong: all_wrong_answer}
+          render json: {good: all_good_answer, wrong: all_wrong_answer, rank: question.rank}
         }
       end
     end
