@@ -91,7 +91,7 @@
 .input_label {
   width: 10%;
 }
-.error {
+.msg {
   margin: 15px 0px;
 }
 .good_field, .good_reason, .bad_field, .bad_reason {
@@ -99,6 +99,10 @@
 }
 .add_btn{
   margin-bottom: 20px;
+}
+.question_field {
+    width: 500px;
+    height: 70px;
 }
 /* question_manage */
 .question_manage {

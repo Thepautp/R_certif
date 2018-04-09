@@ -35,7 +35,7 @@ class TrainingPagesController < ApplicationController
   
   def add_question
     @categories = Categorie.all
-    @error = params[:error] if params[:error]
+    @msg = params[:msg] if params[:msg]
   end
   
   def add_result
@@ -67,9 +67,9 @@ class TrainingPagesController < ApplicationController
       wrong_answers = wrong_answers_arr.join(",")
       question_to_add = Question.new(categorie_id: params[:add_question][:categorie].to_i, text: params[:add_question][:text], good_answer: good_answers, bad_answer: wrong_answers)
       question_to_add.save
-      redirect_to controler: "training_pages", action: "add_question"
+      redirect_to controler: "training_pages", action: "add_question", msg: "Question created with success"
     else
-      redirect_to controler: "training_pages", action: "add_question", error: "Empty field"
+      redirect_to controler: "training_pages", action: "add_question", msg: "Empty field"
     end
   end
   
