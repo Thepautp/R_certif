@@ -12,6 +12,7 @@
     var numberOfField = $(".good_field").length;
     if (numberOfField < 3) {
       $(elem).before('<input class="good_field" type="text" name="add_question[good_answer_'+ (numberOfField + 1) +']" id="add_question_good_answer_'+ (numberOfField + 1) +'">');
+      $(".good_reason").last().after('<input class="good_reason" type="text" name="add_question[good_reason_'+ (numberOfField + 1) +']" id="add_question_good_reason_'+ (numberOfField + 1) +'">');
     }
     numberOfField = $(".good_field").length;
     if (numberOfField == 3){
@@ -27,6 +28,7 @@
     var numberOfField = $(".good_field").length;
     if (numberOfField > 1){
       $("#add_question_good_answer_"+numberOfField).remove();
+      $("#add_question_good_reason_"+numberOfField).remove();
       numberOfField = $(".good_field").length;
     }
     if (numberOfField == 1){
@@ -44,26 +46,61 @@
     </div>
   <% end %>
   <%= form_for(:add_question, url: admin_result_path, html: {id: 'form_add_question'}) do |f| %>
-    <div class="">
-      <%= f.label "Categorie:" %>
-      <%= f.select :categorie, options_for_select(@categories.collect {|p| [ p.label, p.id]}) %>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Categorie:" %>        
+      </div>
+      <div class="input_field">
+        <%= f.select :categorie, options_for_select(@categories.collect {|p| [ p.label, p.id]}) %>
+      </div>
     </div>
-    <div class="">
-      <%= f.label "Question:" %>
-      <%= f.text_area :text, class: "question_field" %>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Question:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_area :text, class: "question_field" %>
+      </div>
     </div>
-    <div class="">
-      <%= f.label "Good answer:" %>
-      <%= f.text_field :good_answer_1, class: "good_field" %>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Good answer:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_field :good_answer_1, class: "good_field" %>
+      </div>
       <span class="add_field">+</span>
       <span class="del_field hidden_field">-</span>
     </div>
-    <div class="">
-      <%= f.label "Wrong answer:" %>
-      <%= f.text_field :bad_answer_1, class: "bad_field" %>
-      <%= f.text_field :bad_answer_2, class: "bad_field" %>
-      <%= f.text_field :bad_answer_3, class: "bad_field" %>
-      <%= f.text_field :bad_answer_4, class: "bad_field" %>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Reason:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_field :good_reason_1, class: "good_reason" %>
+      </div>
+    </div>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Wrong answer:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_field :bad_answer_1, class: "bad_field" %>
+        <%= f.text_field :bad_answer_2, class: "bad_field" %>
+        <%= f.text_field :bad_answer_3, class: "bad_field" %>
+        <%= f.text_field :bad_answer_4, class: "bad_field" %>
+      </div>
+    </div>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Reason:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_field :bad_reason_1, class: "bad_reason" %>
+        <%= f.text_field :bad_reason_2, class: "bad_reason" %>
+        <%= f.text_field :bad_reason_3, class: "bad_reason" %>
+        <%= f.text_field :bad_reason_4, class: "bad_reason" %>
+      </div>
     </div>
     <div class="add_btn">
       <%= submit_tag "Add Question", id: "btn_submit_add", class: "btn"%>
