@@ -59,7 +59,7 @@
         <%= f.label "level:" %>
       </div>
       <div class="input_field">
-        <%= f.select :level, options_for_select(["Silver","Gold"]) %>
+        <%= f.select :level, options_for_select({"silver" => 0, "gold" => 1}) %>
       </div>
     </div>
     <div class="input_wrap">
