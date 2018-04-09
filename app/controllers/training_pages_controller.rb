@@ -2,8 +2,8 @@ class TrainingPagesController < ApplicationController
   def new
     all_question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer").all
     @question = all_question[rand(all_question.size)]
-    bad_answer = @question.bad_answer.split(",").map!{ |s| s.to_i}    #split string into array of integer for sql request
-    good_answer = @question.good_answer.split(",").map!{ |s| s.to_i}  #split string into array of integer for sql request
+    bad_answer = @question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
+    good_answer = @question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
     @response_number = good_answer.size
     @answers = Answer.find(good_answer << bad_answer)
     @answers.shuffle!
@@ -12,8 +12,8 @@ class TrainingPagesController < ApplicationController
   def result
       question_id = params[:response][:question_id]
       @question = Question.find(question_id)                           #asked question
-      good_answer_ids = @question.good_answer.split(",").map!{|s| s}  #array with good_answer ids
-      bad_answer_ids = @question.bad_answer.split(",").map!{|s| s}    #array with bad_answer ids
+      good_answer_ids = @question.good_answer.split(",").map!{|s| s}  #array with answer_id as integer
+      bad_answer_ids = @question.bad_answer.split(",").map!{|s| s}    #array with answer_id as integer
       @bad_answers = Answer.find(bad_answer_ids)
       @good_answers = Answer.find(good_answer_ids)                    #params is an array for always having array on output
       if params[:response][:answer_id]
@@ -60,8 +60,8 @@ class TrainingPagesController < ApplicationController
     @questions = Question.all
     if params[:question_update]
       question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer").find_by_id(params[:question_update][:question])
-      good_answers = question.good_answer.split(",").map!{ |s| s.to_i}  #split string into array of integer for sql request
-      bad_answers = question.bad_answer.split(",").map!{ |s| s.to_i}    #split string into array of integer for sql request
+      good_answers = question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
+      bad_answers = question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
       good_answers.each_with_index do |good, i|
         answer = Answer.find(good)
         if params[:good_answer_text][i] != answer.text || params[:good_answer_reason][i] != answer.reason
@@ -80,8 +80,8 @@ class TrainingPagesController < ApplicationController
   def ajax_api
     if params[:question_id]
       question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer").find_by_id(params[:question_id])
-      good_answer = question.good_answer.split(",").map!{ |s| s.to_i}  #split string into array of integer for sql request
-      bad_answer = question.bad_answer.split(",").map!{ |s| s.to_i}    #split string into array of integer for sql request
+      good_answer = question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
+      bad_answer = question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
       all_good_answer = Answer.find(good_answer)
       all_wrong_answer = Answer.find(bad_answer)
     end
