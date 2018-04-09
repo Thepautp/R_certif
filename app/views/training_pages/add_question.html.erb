@@ -1,3 +1,36 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".add_field").click(function(){
+      addField(this);
+    });
+    $(".del_field").click(function(){
+      delField(this);
+    });
+  });
+  
+  function addField(elem){
+    var numberOfField = $(".good_field").length;
+    if (numberOfField < 3) {
+      $(elem).before('<input class="good_field" type="text" name="add_question[good_answer_'+ (numberOfField + 1) +']" id="add_question_good_answer_'+ (numberOfField + 1) +'">');
+    }
+    numberOfField = $(".good_field").length;
+    var numberOfDelBtn = $(".del_field").length;
+    if (numberOfField > 1 && numberOfField <= 3 && numberOfDelBtn > 0) {
+      $(".del_field").removeClass("hidden_field");
+    }
+  }
+  
+  function delField(elem){
+    var numberOfField = $(".good_field").length;
+    if (numberOfField > 1){
+      $("#add_question_good_answer_"+numberOfField).remove();
+      numberOfField = $(".good_field").length;
+    }
+    if (numberOfField == 1){
+      $(".del_field").addClass("hidden_field");
+    }
+  }
+</script>
 <div class="add_question_wrap">
   <% if @error %>
     <div class="error">
@@ -15,7 +48,9 @@
     </div>
     <div class="">
       <%= f.label "Good answer:" %>
-      <%= f.text_field :good_answer, class: "good_field" %>
+      <%= f.text_field :good_answer_1, class: "good_field" %>
+      <span class="add_field">+</span>
+      <span class="del_field hidden_field">-</span>
     </div>
     <div class="">
       <%= f.label "Wrong answer:" %>
@@ -25,10 +60,10 @@
       <%= f.text_field :bad_answer_4, class: "bad_field" %>
     </div>
     <div class="add_btn">
-      <%= submit_tag "Add Question", id: "btn_submit_add"%>
+      <%= submit_tag "Add Question", id: "btn_submit_add", class: "btn"%>
     </div>
   <% end %>
   <div class="q_manage btn">
-    <%= button_to "Manage question", admin_question_path, method: :get, class: "to_question_btn"%>
+    <%= button_to "Manage question", admin_question_path, method: :get, class: "to_question_btn btn"%>
   </div>
 </div>
