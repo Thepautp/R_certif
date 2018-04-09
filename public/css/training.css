@@ -47,6 +47,9 @@
 .response_wrap li{
   list-style-type: none;
 }
+.question_snippet {
+  background-color: rgb(224, 224, 235);
+}
 
 /* Result  */
 .result_wrap {
