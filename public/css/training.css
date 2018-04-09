@@ -15,7 +15,8 @@
 
 /* PARTIAL: question_label */
 .question_wrap, .response_wrap {
-  width: 100%;
+  width: 40%;
+  margin: auto;
 }
 .question_wrap {
   display: flex;
@@ -24,6 +25,7 @@
 .question_data {
   display: flex;
   flex-direction: column;
+  width: 20%;
   margin: 25px;
 }
 .question_detail {
@@ -40,7 +42,9 @@
   padding: 1px 3px;
   border: 1px solid #aaaaaa;
 }
-
+.response_wrap li{
+  list-style-type: none;
+}
 
 /* Result  */
 .result_wrap {
@@ -74,6 +78,28 @@
 }
 
 
+/* Create question */
+.add_question_wrap {
+  width: 80%;
+  margin: auto;
+}
+.input_wrap{
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.input_label {
+  width: 10%;
+}
+.error {
+  margin: 15px 0px;
+}
+.good_field, .good_reason, .bad_field, .bad_reason {
+  margin-right: 5px;
+}
+.add_btn{
+  margin-bottom: 20px;
+}
 /* question_manage */
 .question_manage {
   display: flex;
