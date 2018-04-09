@@ -41,21 +41,25 @@ class TrainingPagesController < ApplicationController
   def add_result
     wrong_answers_arr = []
     is_correct_question = true
+    num_good_answer = 0
     params[:add_question].each do |k,v|
       is_correct_question = false if v.blank?
+      3.times do |i|
+        if k.eql? "good_answer_#{i+1}"
+          num_good_answer +=1
+        end
+      end
     end
     if is_correct_question
       good_answers_arr = []
-      3.times do |i|
-        temp = Answer.new(text: params[:add_question]["good_answer_#{i+1}"])
+      num_good_answer.times do |i|
+        temp = Answer.new(text: params[:add_question]["good_answer_#{i+1}"], reason: params[:add_question]["good_reason_#{i+1}"])
         temp.save!
         good_answers_arr << temp.id.to_s
       end
-      # good_answer_to_add = Answer.new(text: params[:add_question][:good_answer], reason: "nope")
-      # good_answer_to_add.save!
       wrong_answers_arr = []
       4.times do |i|
-        temp = Answer.new(text: params[:add_question]["bad_answer_#{i+1}"])
+        temp = Answer.new(text: params[:add_question]["bad_answer_#{i+1}"], reason: params[:add_question]["bad_reason_#{i+1}"])
         temp.save!
         wrong_answers_arr << temp.id.to_s
       end
@@ -63,6 +67,7 @@ class TrainingPagesController < ApplicationController
       wrong_answers = wrong_answers_arr.join(",")
       question_to_add = Question.new(categorie_id: params[:add_question][:categorie].to_i, text: params[:add_question][:text], good_answer: good_answers, bad_answer: wrong_answers)
       question_to_add.save
+      redirect_to controler: "training_pages", action: "add_question"
     else
       redirect_to controler: "training_pages", action: "add_question", error: "Empty field"
     end
