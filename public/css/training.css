@@ -25,8 +25,11 @@
 .question_cat {
   font-style: italic;
 }
+/* Result  */
 .result_wrap {
-  text-align: center;
+  text-align: justify;
+  width: 40%;
+  margin: auto;
 }
 .result {
   margin: 30px 0px;
@@ -34,12 +37,25 @@
 }
 .all_good {
   border: 1px solid #4f9f99;
-  margin-bottom: 30px;  
+  margin-bottom: 30px;
 }
 .all_bad {
   border: 1px solid #4f9f99;
   margin-bottom: 30px;
 }
+.soluce_text {
+  
+}
+.soluce_reason {
+  
+}
+.good_detail {
+  
+}
+.bad_detail{
+  
+}
+
 
 /* question_manage */
 .question_manage {

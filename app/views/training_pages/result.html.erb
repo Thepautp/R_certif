@@ -1,17 +1,21 @@
 <div class="result_wrap">
     <div class="result">
-      <%= @is_good_answer ? "Good answer" : "Wrong answer" %>
+      <%= @is_good_answer ? "GOOD answer" : "WRONG answer" %>
     </div>
-    <div class="all_good">      
-      <% @good_answers.each do |a| %>
+    <div class="all_good">
+      <% @good_answers.each_with_index do |a,i| %>
         <div class="good_detail">
+          <%= i+1 %>- 
+          <%= a.text %>: 
           <%= a.reason %>
         </div>
       <% end %>
     </div>
-    <div class="all_bad">      
-      <% @bad_answers.each do |a| %>
+    <div class="all_bad">
+      <% @bad_answers.each_with_index do |a,i| %>
         <div class="bad_detail">
+          <%= i+1 %>- 
+          <%= a.text %>: 
           <%= a.reason %>
         </div>
       <% end %>
