@@ -4,6 +4,15 @@
   margin: auto;
   justify-content: center;
 }
+
+/* general */
+.hidden_field{
+  visibility: hidden;
+}
+.btn {
+  cursor: pointer;
+}
+
 /* PARTIAL: question_label */
 .question_wrap, .response_wrap {
   width: 100%;
@@ -25,6 +34,14 @@
 .question_cat {
   font-style: italic;
 }
+.del_field, .add_field{
+  cursor: pointer;
+  margin-left: 15px;
+  padding: 1px 3px;
+  border: 1px solid #aaaaaa;
+}
+
+
 /* Result  */
 .result_wrap {
   text-align: justify;
