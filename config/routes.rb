@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "training", to: "training_pages#new"
   get "admin", to: "training_pages#add_question"
@@ -7,5 +8,6 @@ Rails.application.routes.draw do
   post "admin/question", to: "training_pages#question_manage"
   get "admin/ajax", to: "training_pages#ajax_api"
   post "result", to: "training_pages#result"
+  get 'questions/delete'
   root "training_pages#new"
 end
