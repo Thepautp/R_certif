@@ -31,10 +31,11 @@
              $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_reason[]" value="' + wrong_answers[i]["reason"] + '">');
            }
            if(response["rank"] == 1 ){
-             $(".wrong_answer_part").append('<select name="question_update[level]" id="question_update_level"><option value="0">silver</option><option value="1" selected="selected">gold</option></select>')
+             $(".rank_part").append('<select name="question_update[level]" id="question_update_level"><option value="0">silver</option><option value="1" selected="selected">gold</option></select>')
            }else{
-             $(".wrong_answer_part").append('<select name="question_update[level]" id="question_update_level"><option value="0" selected="selected">silver</option><option value="1">gold</option></select>')
+             $(".rank_part").append('<select name="question_update[level]" id="question_update_level"><option value="0" selected="selected">silver</option><option value="1">gold</option></select>')
            }
+           
         }
       });//-end ajax
     });
@@ -56,6 +57,9 @@
           
         </div>
         <div class="rank_part">
+          
+        </div>
+        <div class="snippet_part">
           
         </div>
       </div>
