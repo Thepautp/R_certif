@@ -1,6 +1,6 @@
 class TrainingPagesController < ApplicationController
   def new
-    all_question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank").all
+    all_question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank, snippet").all
     @question = all_question[rand(all_question.size)]
     bad_answer = @question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
     good_answer = @question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
@@ -79,7 +79,7 @@ class TrainingPagesController < ApplicationController
   def question_manage
     @questions = Question.all
     if params[:question_update]
-      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank").find_by_id(params[:question_update][:question])
+      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank, snippet").find_by_id(params[:question_update][:question])
       good_answers = question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
       bad_answers = question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
       good_answers.each_with_index do |good, i|
@@ -103,7 +103,7 @@ class TrainingPagesController < ApplicationController
   
   def ajax_api
     if params[:question_id]
-      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank").find_by_id(params[:question_id])
+      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank, snippet").find_by_id(params[:question_id])
       good_answer = question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
       bad_answer = question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
       all_good_answer = Answer.find(good_answer)

@@ -16,9 +16,11 @@
         <%= question.text %>
         (Choose <strong><%= response_num %></strong> )
       </div>
-      <div class="question_snippet">
-        <pre><%= question.text %></pre>
-      </div>
+      <% if question.snippet %>
+        <div class="question_snippet">
+          <pre><%= question.snippet %></pre>
+        </div>
+      <% end %>
     </div>
   </div>  
 </div>
