@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   post "admin/question", to: "training_pages#question_manage"
   get "admin/ajax", to: "training_pages#ajax_api"
   post "result", to: "training_pages#result"
-  get 'questions/delete'
+  get 'questions/destroy'
   root "training_pages#new"
 end

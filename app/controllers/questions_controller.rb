@@ -1,4 +1,4 @@
 class QuestionsController < ApplicationController
-  def delete
+  def destroy
   end
 end
