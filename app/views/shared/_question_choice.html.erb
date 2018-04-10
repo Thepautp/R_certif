@@ -4,7 +4,7 @@
     <div class="unique_response">
       <ul>
         <% answers.each do |a| %>
-          <li><%= f.radio_button :answer_id, "#{a.id},#{a.text}", checked: false %><%= a.text %></li>
+          <li><%= f.radio_button :answer_id, "#{a.id},#{a.text}", {required: 'required'} %><%= a.text %></li>
         <% end %>
       </ul>
     </div>
