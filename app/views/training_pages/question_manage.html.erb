@@ -13,9 +13,12 @@
         success: function (response) {
           console.log(response);
           var good_answers = response["good"];
-          var wrong_answers = response["wrong"]
+          var wrong_answers = response["wrong"];
+          var snippet = response["snippet"];
           $(".good_answer_part").empty();
           $(".wrong_answer_part").empty();
+          $(".rank_part").empty();
+          $(".snippet_part").empty();
           for(var i=0; i< good_answers.length; i++){
              $(".good_answer_part").append('<div class="answer_container ga_'+i+'"></div>');
              $('.ga_'+i+'').append('<div class="left_part ">Good answer '+(i+1)+':</div>');
@@ -36,8 +39,8 @@
              $(".rank_part").append('<select name="question_update[level]" id="question_update_level"><option value="0" selected="selected">silver</option><option value="1">gold</option></select>');
            }
            $(".snippet_part").append('<div class="left_part ">Snippet: </div>');
-           $(".snippet_part").append('<div class="right_part rp_snippet">Snippet: </div>');
-           $(".rp_snippet").append('<textarea class="question_field" name="add_question[text]" id="add_question_text">'+ response["snippet"] +'</textarea>');
+           $(".snippet_part").append('<div class="right_part rp_snippet"></div>');
+           $(".rp_snippet").append('<textarea class="question_field" name="add_question[text]" id="add_question_text">'+ snippet +'</textarea>');
         }
       });//-end ajax
     });

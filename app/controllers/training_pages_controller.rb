@@ -113,7 +113,7 @@ class TrainingPagesController < ApplicationController
     if request.xhr?
       respond_to do |format|
         format.json {
-          render json: {good: all_good_answer, wrong: all_wrong_answer, rank: question.rank}
+          render json: {good: all_good_answer, wrong: all_wrong_answer, rank: question.rank, snippet: question.snippet}
         }
       end
     end
