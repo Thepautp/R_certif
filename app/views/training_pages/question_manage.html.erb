@@ -15,6 +15,9 @@
           var good_answers = response["good"];
           var wrong_answers = response["wrong"];
           var snippet = response["snippet"];
+          if ( snippet == null){
+            snippet = "";
+          }
           $(".good_answer_part").empty();
           $(".wrong_answer_part").empty();
           $(".rank_part").empty();
@@ -46,7 +49,7 @@
            });
         }
       });//-end ajax
-    }); 
+    });
   });
 </script>
 
