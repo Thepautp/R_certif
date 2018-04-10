@@ -1,19 +1,19 @@
 $(document).ready(function() {
   $(".add_field").click(function(){
-    addField(this);
+    addField();
   });
   
   $(".del_field").click(function(){
-    delField(this);
+    delField();
   });
   
   $("#question_update_question").change(recoverData());
 });
 
-function addField(elem){
+function addField(){
   var numberOfField = $(".good_field").length;
   if (numberOfField < 3) {
-    $(elem).before('<input class="good_field" type="text" name="add_question[good_answer_'+ (numberOfField + 1) +']" id="add_question_good_answer_'+ (numberOfField + 1) +'">');
+    $(".add_field").before('<input class="good_field" type="text" name="add_question[good_answer_'+ (numberOfField + 1) +']" id="add_question_good_answer_'+ (numberOfField + 1) +'">');
     $(".good_reason").last().after('<input class="good_reason" type="text" name="add_question[good_reason_'+ (numberOfField + 1) +']" id="add_question_good_reason_'+ (numberOfField + 1) +'">');
   }
   numberOfField = $(".good_field").length;
@@ -26,7 +26,7 @@ function addField(elem){
   }
 }
 
-function delField(elem){
+function delField(){
   var numberOfField = $(".good_field").length;
   if (numberOfField > 1){
     $("#add_question_good_answer_"+numberOfField).remove();
