@@ -97,8 +97,12 @@ class TrainingPagesController < ApplicationController
       end
       rank = params[:question_update][:level].to_i
       question.update_attribute(:rank, rank) if question.rank != rank
-      question.update_attribute(:snippet, params[:snippet]) if question.snippet != params[:snippet]
-      
+      snippet = params[:snippet]
+      if params[:snippet].blank?
+        question.update_attribute(:snippet, nil)
+      else
+        question.update_attribute(:snippet, params[:snippet]) if question.snippet != params[:snippet]        
+      end      
     end
   end
   
