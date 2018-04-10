@@ -34,8 +34,7 @@ class TrainingPagesController < ApplicationController
   end
   
   def add_question
-    @categories = Categorie.all
-      
+    @categories = Categorie.all    
     if params[:add_question]
       wrong_answers_arr = []
       is_correct_question = true
