@@ -28,6 +28,8 @@
              $('.ga_'+i+'').append('<div class="right_part rp_ga_'+i+'"></div>');
              $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_text[]" value="' + good_answers[i]["text"] + '">');
              $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_reason[]" value="' + good_answers[i]["reason"] + '">');
+             $('.answer_container').append('<span class="add_field_update">+</span>')
+             $('.answer_container').append('<span class="del_field_update hidden_field">-</span>')
            }
            for(var i=0; i< wrong_answers.length; i++){
              $(".wrong_answer_part").append('<div class="answer_container wa_'+i+'"></div>') ;
@@ -45,11 +47,38 @@
            $(".snippet_part").append('<div class="right_part rp_snippet"></div>');
            $(".rp_snippet").append('<textarea class="question_field" name="snippet" id="add_question_text">'+ snippet +'</textarea>');
            $(".add_field_update").click(function(){
-             addFieldUpdate(this);
+             addFieldUpdate();
+           });
+           $(".del_field_update").click(function(){
+             delFieldUpdate();
            });
         }
       });//-end ajax
-    });
+    });    
+    function addFieldUpdate(){
+      var numberOfField = $(".good_container").length;
+      if (numberOfField < 3){
+        $(".good_container").last().after('<div class="answer_container good_container ga_'+ (numberOfField) +'"></div>');
+        $('.ga_'+ numberOfField +'').append('<div class="left_part ">Good answer '+ (numberOfField + 1) +':</div>');
+        $('.ga_'+ numberOfField +'').append('<div class="right_part rp_ga_'+ (numberOfField) +'"></div>');
+        $('.rp_ga_'+ numberOfField +'').append('<input type="text" name="good_answer_text[]">');
+        $('.rp_ga_'+ numberOfField +'').append('<input type="text" name="good_answer_reason[]">');        
+      }
+      $(".del_field_update").removeClass("hidden_field");
+    }
+    function delFieldUpdate() {
+      var numberOfField = $(".good_container").length;
+      if (numberOfField > 1){
+        $(".ga_"+ (numberOfField-1) +"").remove();
+        numberOfField = $(".good_field").length;
+      }
+      if (numberOfField == 1){
+        $(".del_field_update").addClass("hidden_field");
+      }
+      if (numberOfField < 3){
+        $(".del_field_update").removeClass("hidden_field");
+      }
+    }
   });
 </script>
 
