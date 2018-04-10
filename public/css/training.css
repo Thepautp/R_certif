@@ -15,7 +15,7 @@
 
 /* PARTIAL: question_label */
 .question_wrap, .response_wrap {
-  width: 40%;
+  width: 70%;
   margin: auto;
 }
 .question_wrap {
@@ -34,7 +34,6 @@
   margin: 25px;
 }
 .question_cat, .question_rank {
-  text-align: center;
   font-style: italic;
 }
 
@@ -53,7 +52,9 @@
   border-radius: 5px;
   padding: 5px;
 }
-
+.question_lib {
+  margin-bottom: 10px;
+}
 /* Result  */
 .result_wrap {
   text-align: justify;
@@ -119,10 +120,10 @@
 }
 .change_panel {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .question_part {
-  margin-right: 30px;
+  margin-bottom: 30px;
 }
 .question_detail_part {
   display: flex;
@@ -141,8 +142,15 @@
   flex-direction: row;
   margin-bottom: 30px;
 }
+.rank_part {
+  margin-bottom: 30px;
+}
+.snippet_part {
+  display: flex;
+  flex-direction: row;
+}
 .left_part {
-  width: 20%;
+  width: 10%;
 }
 .right_part {
   display: flex;
