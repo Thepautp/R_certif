@@ -7,7 +7,9 @@ $(document).ready(function() {
     delField();
   });
   
-  $("#question_update_question").change(recoverData());
+  $("#question_update_question").change(function(){
+    recoverData();
+  });
 });
 
 function addField(){
@@ -42,7 +44,7 @@ function delField(){
 }
 
 function recoverData() {
-  var question_id = $(this).val();
+  var question_id = $("#question_update_question").val();
   $.ajax({
     url: "/admin/ajax",
     method: "GET",
