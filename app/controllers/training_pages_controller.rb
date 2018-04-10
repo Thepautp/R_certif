@@ -87,7 +87,7 @@ class TrainingPagesController < ApplicationController
         answer = Answer.find(good)
         if params[:good_answer_text][i] != answer.text || params[:good_answer_reason][i] != answer.reason
           answer.update_attributes(text: params[:good_answer_text][i], reason: params[:good_answer_reason][i])
-        end        
+        end
       end
       bad_answers.each_with_index do |bad,i|
         answer = Answer.find(bad)
