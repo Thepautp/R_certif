@@ -26,6 +26,9 @@
     <div class="destroy_question">
       <%= button_to "Delete question", admin_question_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "del_btn btn"%>
     </div>
+    <div class="return">
+      <%= button_to "Return", admin_path, method: :get, class: "return_btn btn"%>
+    </div>
     <% end %>
   </div>
   <div class="answer_manage">
