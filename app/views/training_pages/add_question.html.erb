@@ -1,7 +1,7 @@
 <div class="add_question_wrap">
   <% if @msg %>
     <div class="msg">
-      <%= @msg %>    
+      <%= @msg %>
     </div>
   <% end %>
   <%= form_for(:add_question, url: admin_path, html: {id: 'form_add_question'}) do |f| %>
