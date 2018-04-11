@@ -23,6 +23,9 @@
     <div class="submit_panel">
       <%= submit_tag "Update Question", id: "btn_update"%>
     </div>
+    <div class="destroy_question">
+      <%= button_to "Delete question", admin_question_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "del_btn btn"%>
+    </div>
     <% end %>
   </div>
   <div class="answer_manage">
