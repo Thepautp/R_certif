@@ -1,15 +1,18 @@
 class TrainingPagesController < ApplicationController
   def new
-    all_question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank, snippet").all
+    all_question = Question.all
     
     if all_question.empty?
       render "shared/default"
     else
       @question = all_question[rand(all_question.size)]
-      bad_answer = @question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
-      good_answer = @question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
-      @response_number = good_answer.size
-      @answers = Answer.find(good_answer << bad_answer)
+      @answers = []
+      @question.good_answers.each do |g|
+        @answers << g
+      end
+      @question.bad_answers.each do |b|
+        @answers << b
+      end
       @answers.shuffle!
     end
   end

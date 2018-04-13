@@ -4,7 +4,7 @@
       Question: #<%= question.id %>
     </div>
     <div class="question_cat">
-      <%= question.cat %>
+      <%= question.categorie.label %>
     </div>
     <div class="question_rank">
       <%= question.rank == 0 ? "Silver" : "Gold" %>
@@ -14,7 +14,7 @@
     <div class="question_txt">
       <div class="question_lib">
         <%= question.text %>
-        (Choose <strong><%= response_num %></strong> )
+        (Choose <strong><%= question.good_answers.count %></strong> )
       </div>
       <% if question.snippet %>
         <div class="question_snippet">
