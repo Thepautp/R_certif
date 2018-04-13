@@ -10,7 +10,8 @@ questions_list = [
   ],
   [9,"Which of the following is the correct output for the program given below?",0,
     [["2","Return the number of key/pairs"]],
-    [["15",""],["6",""],["4",""]]
+    [["15",""],["6",""],["4",""]],
+    'puts({"members" => 193, "year" => 2014}.size)'
   ]
 ]
 questions_list.each do |q|
