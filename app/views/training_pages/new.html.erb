@@ -1,3 +1,2 @@
-<%= render partial: "shared/question_label" %>
-<%= render partial: "shared/question_choice" %>
-<%= render partial: "shared/question_submit" %>
+<%= render partial: "shared/question_label", locals: {question: @question, response_num: @response_number} %>
+<%= render partial: "shared/question_choice", locals: {question: @question, response_num: @response_number, answers: @answers}  %>

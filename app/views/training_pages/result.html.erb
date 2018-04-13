@@ -1,0 +1,26 @@
+<div class="result_wrap">
+    <div class="result">
+      <%= @is_good_answer ? "GOOD answer" : "WRONG answer" %>
+    </div>
+    <div class="all_good">
+      <% @good_answers.each_with_index do |a,i| %>
+        <div class="good_detail">
+          <%= i+1 %>- 
+          <%= a.text %>: 
+          <%= a.reason %>
+        </div>
+      <% end %>
+    </div>
+    <div class="all_bad">
+      <% @bad_answers.each_with_index do |a,i| %>
+        <div class="bad_detail">
+          <%= i+1 %>- 
+          <%= a.text %>: 
+          <%= a.reason %>
+        </div>
+      <% end %>
+    </div>
+    <div class="next_question">
+      <%= button_to "next question", training_path, method: :get, class: "next_btn btn"%>
+    </div>
+</div>

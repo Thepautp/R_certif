@@ -1,0 +1,87 @@
+<div class="add_question_wrap">
+  <% if @msg %>
+    <div class="msg">
+      <%= @msg %>
+    </div>
+  <% end %>
+  <%= form_for(:add_question, url: admin_path, html: {id: 'form_add_question'}) do |f| %>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Categorie:" %>
+      </div>
+      <div class="input_field">
+        <%= f.select :categorie, options_for_select(@categories.collect {|p| [ p.label, p.id]}) %>
+      </div>
+    </div>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "level:" %>
+      </div>
+      <div class="input_field">
+        <%= f.select :level, options_for_select({"silver" => 0, "gold" => 1}) %>
+      </div>
+    </div>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Question:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_area :text, class: "question_field" %>
+      </div>
+    </div>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Snippet:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_area :snippet, class: "snippet_field" %>
+      </div>
+    </div>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Good answer:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_field :good_answer_1, class: "good_field" %>
+      </div>
+      <span class="add_field">+</span>
+      <span class="del_field hidden_field">-</span>
+    </div>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Reason:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_field :good_reason_1, class: "good_reason" %>
+      </div>
+    </div>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Wrong answer:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_field :bad_answer_1, class: "bad_field" %>
+        <%= f.text_field :bad_answer_2, class: "bad_field" %>
+        <%= f.text_field :bad_answer_3, class: "bad_field" %>
+        <%= f.text_field :bad_answer_4, class: "bad_field" %>
+      </div>
+    </div>
+    <div class="input_wrap">
+      <div class="input_label">
+        <%= f.label "Reason:" %>
+      </div>
+      <div class="input_field">
+        <%= f.text_field :bad_reason_1, class: "bad_reason" %>
+        <%= f.text_field :bad_reason_2, class: "bad_reason" %>
+        <%= f.text_field :bad_reason_3, class: "bad_reason" %>
+        <%= f.text_field :bad_reason_4, class: "bad_reason" %>
+      </div>
+    </div>
+    <div class="add_btn">
+      <%= submit_tag "Add Question", id: "btn_submit_add", class: "btn"%>
+    </div>
+  <% end %>
+  <div class="q_manage btn">
+    <%= button_to "Manage question", admin_question_path, method: :get, class: "to_question_btn btn"%>
+  </div>
+</div>

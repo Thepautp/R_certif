@@ -1,18 +1,26 @@
 <div class="question_wrap">
   <div class="question_data">
     <div class="question_number">
-      Question N°<%= "X" %>
+      Question: #<%= question.id %>
     </div>
     <div class="question_cat">
-      <%= "Categorie" %>
-    </div>    
+      <%= question.cat %>
+    </div>
+    <div class="question_rank">
+      <%= question.rank == 0 ? "Silver" : "Gold" %>
+    </div>
   </div>
   <div class="question_detail">
     <div class="question_txt">
-      <%= "Je suis une superbe question, blablabla, blublublu?" %>
-    </div>
-    <div class="question_response_number">
-      (Choose <%= "X" %> )
+      <div class="question_lib">
+        <%= question.text %>
+        (Choose <strong><%= response_num %></strong> )
+      </div>
+      <% if question.snippet %>
+        <div class="question_snippet">
+          <pre><%= question.snippet %></pre>
+        </div>
+      <% end %>
     </div>
   </div>  
 </div>

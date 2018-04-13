@@ -1,18 +1,27 @@
 <div class="response_wrap">
-  <div class="unique_response">
-    <ul>
-      <li><%= radio_button_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= radio_button_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= radio_button_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= radio_button_tag "test", "0", false %> <%= "Possible answer" %></li>
-    </ul>
-  </div>
-  <div class="multiple_response">
-    <ul>
-      <li><%= check_box_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= check_box_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= check_box_tag "test", "0", false %> <%= "Possible answer" %></li>
-      <li><%= check_box_tag "test", "0", false %> <%= "Possible answer" %></li>      
-    </ul>
-  </div>
+  <%= form_for(:response, url: result_path, html: {id: 'firm_response'}) do |f| %>
+    <% if response_num == 1 %>
+    <div class="unique_response">
+      <ul>
+        <% answers.each do |a| %>
+          <li><%= f.radio_button :answer_id, "#{a.id},#{a.text}", {required: 'required'} %><%= a.text %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% else %>
+    <div class="multiple_response">
+      <ul>
+        <% answers.each do |a| %>
+          <li><%= f.check_box :answer_id, {:multiple => true}, "#{a.id}", nil %> <%= f.label a.text %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="question_submit_wrap">
+      <%= f.hidden_field :question_id, value: question.id %>
+      <div>
+        <%= submit_tag "Validate", id: "btn_submit_response", class: "btn"%>
+      </div>
+    </div>
+  <% end %>
 </div>
