@@ -21,3 +21,11 @@
 /yarn-error.log
 
 .byebug_history
+/vendor/bundle
+
+/Gemfile.lock
+
+### Vagrant ###
+.vagrant/
+vagrantfile
+*.box
