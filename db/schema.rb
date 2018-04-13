@@ -10,12 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413054706) do
+ActiveRecord::Schema.define(version: 20180413055910) do
+
+  create_table "bad_answers", force: :cascade do |t|
+    t.integer "question_id"
+    t.string "wording"
+    t.string "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_bad_answers_on_question_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "label"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "good_answers", force: :cascade do |t|
+    t.integer "question_id"
+    t.string "wording"
+    t.string "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_good_answers_on_question_id"
   end
 
   create_table "questions", force: :cascade do |t|
