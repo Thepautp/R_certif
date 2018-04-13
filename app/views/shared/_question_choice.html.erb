@@ -12,7 +12,7 @@
     <div class="multiple_response">
       <ul>
         <% answers.each do |a| %>
-          <li><%= f.check_box :answer_id, {:multiple => true}, "#{a.id}", nil %> <%= f.label a.wording %></li>
+          <li><%= f.check_box :answer_id, {:multiple => true}, "#{a.id},#{a.wording}", nil %> <%= f.label a.wording %></li>
         <% end %>
       </ul>
     </div>
