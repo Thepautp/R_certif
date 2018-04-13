@@ -7,3 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require_relative "categories.rb"
+require_relative "question_seeds.rb"
