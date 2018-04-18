@@ -30,8 +30,8 @@ $(document).ready(function() {
 function addField(){
   var numberOfField = $(".good_field").length;
   if (numberOfField < 3) {
-    $(".add_field").before('<input class="good_field" type="text" name="add_question[good_answer_'+ (numberOfField + 1) +']" id="add_question_good_answer_'+ (numberOfField + 1) +'">');
-    $(".good_reason").last().after('<input class="good_reason" type="text" name="add_question[good_reason_'+ (numberOfField + 1) +']" id="add_question_good_reason_'+ (numberOfField + 1) +'">');
+    $(".add_field").before('<textarea class="good_field" name="add_question[good_answer_'+ (numberOfField + 1) +']" id="add_question_good_answer_'+ (numberOfField + 1) +'"></textarea>');
+    $(".good_reason").last().after('<textarea class="good_reason" type="text" name="add_question[good_reason_'+ (numberOfField + 1) +']" id="add_question_good_reason_'+ (numberOfField + 1) +'"></textarea>');
   }
   numberOfField = $(".good_field").length;
   if (numberOfField == 3){
