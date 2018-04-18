@@ -86,29 +86,29 @@ class TrainingPagesController < ApplicationController
   def question_manage
     @questions = Question.all
     if params[:question_update]
-      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank, snippet").find_by_id(params[:question_update][:question])
-      good_answers = question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
-      bad_answers = question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
-      good_answers.each_with_index do |good, i|
-        answer = Answer.find(good)
-        if params[:good_answer_text][i] != answer.text || params[:good_answer_reason][i] != answer.reason
-          answer.update_attributes(text: params[:good_answer_text][i], reason: params[:good_answer_reason][i])
+      question = Question.find_by_id(params[:question_update][:question])
+      question.good_answers.each_with_index do |ga, i|
+        unless ga.wording.eql? params[:good_answer_wording][i]
+          ga.update_attributes(wording: params[:good_answer_wording][i])
+        end
+        unless ga.reason.eql? params[:good_answer_reason][i]
+          ga.update_attributes(reason: params[:good_answer_reason][i])
         end
       end
-      bad_answers.each_with_index do |bad,i|
-        answer = Answer.find(bad)
-        if params[:wrong_answer_text][i] != answer.text || params[:wrong_answer_reason][i] != answer.reason
-          answer.update_attributes(text: params[:wrong_answer_text][i], reason: params[:wrong_answer_reason][i])
+      question.bad_answers.each_with_index do |ba, i|
+        unless ba.wording.eql? params[:wrong_answer_wording][i]
+          ba.update_attributes(wording: params[:wrong_answer_wording][i])
+        end
+        unless ba.reason.eql? params[:wrong_answer_reason][i]
+          ba.update_attributes(reason: params[:wrong_answer_reason][i])
         end
       end
-      rank = params[:question_update][:level].to_i
-      question.update_attribute(:rank, rank) if question.rank != rank
-      snippet = params[:snippet]
-      if params[:snippet].blank?
-        question.update_attribute(:snippet, nil)
-      else
-        question.update_attribute(:snippet, params[:snippet]) if question.snippet != params[:snippet]        
-      end      
+      unless question.rank.eql? params[:question_update][:level].to_i
+        question.update_attributes(rank: params[:question_update][:level].to_i)
+      end
+      unless question.snippet.eql?(params[:snippet]) || params[:snippet].blank?
+        question.update_attributes(snippet: params[:snippet])
+      end
     end
   end
   

@@ -69,14 +69,14 @@ function recoverData() {
          $(".good_answer_part").append('<div class="answer_container good_container ga_'+i+'"></div>');
          $('.ga_'+i+'').append('<div class="left_part ">Good answer '+(i+1)+':</div>');
          $('.ga_'+i+'').append('<div class="right_part rp_ga_'+i+'"></div>');
-         $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_text[]" value="' + good_answers[i]["wording"] + '">');
+         $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_wording[]" value="' + good_answers[i]["wording"] + '">');
          $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_reason[]" value="' + good_answers[i]["reason"] + '">');
        }
        for(var i=0; i< wrong_answers.length; i++){
          $(".wrong_answer_part").append('<div class="answer_container wa_'+i+'"></div>') ;
          $('.wa_'+i+'').append('<div class="left_part ">Wrong answer '+(i+1)+':</div>');
          $('.wa_'+i+'').append('<div class="right_part rp_wa_'+i+'"></div>');
-         $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_text[]" value="' + wrong_answers[i]["wording"] + '">');
+         $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_wording[]" value="' + wrong_answers[i]["wording"] + '">');
          $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_reason[]" value="' + wrong_answers[i]["reason"] + '">');
        }
        if(response["rank"] == 1 ){

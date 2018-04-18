@@ -6,6 +6,7 @@
           <%= f.label "Choose a question:" %>
           <%= f.select :question, options_for_select(@questions.collect {|p| [ p.text, p.id]}), include_blank: "~~~~ Choose one question ~~~~"  %>
       </div>
+      <!-- Fill with Jquery, check .js -->
       <div class="question_detail_part">
         <div class="good_answer_part">
         </div>
@@ -24,7 +25,7 @@
       <%= submit_tag "Update Question", id: "btn_update"%>
     </div>
     <div class="destroy_question">
-      <%= button_to "Delete question", admin_question_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "del_btn btn"%>
+      <!-- <%= button_to "Delete question", admin_question_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "del_btn btn"%> -->
     </div>
     <div class="return">
       <%= button_to "Return", admin_path, method: :get, class: "return_btn btn"%>
