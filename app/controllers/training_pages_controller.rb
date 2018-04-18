@@ -85,29 +85,31 @@ class TrainingPagesController < ApplicationController
   
   def question_manage
     @questions = Question.all
-    unless params[:question_update][:question].empty?
-      question = Question.find_by_id(params[:question_update][:question])
-      question.good_answers.each_with_index do |ga, i|
-        unless ga.wording.eql? params[:good_answer_wording][i]
-          ga.update_attributes(wording: params[:good_answer_wording][i])
+    if params[:question_update]
+      unless params[:question_update][:question].empty?
+        question = Question.find_by_id(params[:question_update][:question])
+        question.good_answers.each_with_index do |ga, i|
+          unless ga.wording.eql? params[:good_answer_wording][i]
+            ga.update_attributes(wording: params[:good_answer_wording][i])
+          end
+          unless ga.reason.eql? params[:good_answer_reason][i]
+            ga.update_attributes(reason: params[:good_answer_reason][i])
+          end
         end
-        unless ga.reason.eql? params[:good_answer_reason][i]
-          ga.update_attributes(reason: params[:good_answer_reason][i])
+        question.bad_answers.each_with_index do |ba, i|
+          unless ba.wording.eql? params[:wrong_answer_wording][i]
+            ba.update_attributes(wording: params[:wrong_answer_wording][i])
+          end
+          unless ba.reason.eql? params[:wrong_answer_reason][i]
+            ba.update_attributes(reason: params[:wrong_answer_reason][i])
+          end
         end
-      end
-      question.bad_answers.each_with_index do |ba, i|
-        unless ba.wording.eql? params[:wrong_answer_wording][i]
-          ba.update_attributes(wording: params[:wrong_answer_wording][i])
+        unless question.rank.eql? params[:question_update][:level].to_i
+          question.update_attributes(rank: params[:question_update][:level].to_i)
         end
-        unless ba.reason.eql? params[:wrong_answer_reason][i]
-          ba.update_attributes(reason: params[:wrong_answer_reason][i])
+        unless question.snippet.eql?(params[:snippet]) || params[:snippet].blank?
+          question.update_attributes(snippet: params[:snippet])
         end
-      end
-      unless question.rank.eql? params[:question_update][:level].to_i
-        question.update_attributes(rank: params[:question_update][:level].to_i)
-      end
-      unless question.snippet.eql?(params[:snippet]) || params[:snippet].blank?
-        question.update_attributes(snippet: params[:snippet])
       end
     end
   end
