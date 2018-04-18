@@ -54,12 +54,12 @@ function recoverData() {
       console.error('AJAX Error: ' + status + error);
     },
     success: function (response) {
-      console.log(response);
+      var question = response["question"]
       var good_answers = response["good"];
       var wrong_answers = response["wrong"];
-      var snippet = response["snippet"];
-      if ( snippet == null){
-        snippet = "";
+      console.log(question.snippet);
+      if ( question.snippet == null){
+        question.snippet = "";
       }
       $(".good_answer_part").empty();
       $(".wrong_answer_part").empty();
@@ -69,14 +69,14 @@ function recoverData() {
          $(".good_answer_part").append('<div class="answer_container good_container ga_'+i+'"></div>');
          $('.ga_'+i+'').append('<div class="left_part ">Good answer '+(i+1)+':</div>');
          $('.ga_'+i+'').append('<div class="right_part rp_ga_'+i+'"></div>');
-         $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_text[]" value="' + good_answers[i]["text"] + '">');
+         $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_text[]" value="' + good_answers[i]["wording"] + '">');
          $('.rp_ga_'+i+'').append('<input type="text" name="good_answer_reason[]" value="' + good_answers[i]["reason"] + '">');
        }
        for(var i=0; i< wrong_answers.length; i++){
          $(".wrong_answer_part").append('<div class="answer_container wa_'+i+'"></div>') ;
          $('.wa_'+i+'').append('<div class="left_part ">Wrong answer '+(i+1)+':</div>');
          $('.wa_'+i+'').append('<div class="right_part rp_wa_'+i+'"></div>');
-         $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_text[]" value="' + wrong_answers[i]["text"] + '">');
+         $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_text[]" value="' + wrong_answers[i]["wording"] + '">');
          $('.rp_wa_'+i+'').append('<input type="text" name="wrong_answer_reason[]" value="' + wrong_answers[i]["reason"] + '">');
        }
        if(response["rank"] == 1 ){
@@ -86,7 +86,7 @@ function recoverData() {
        }
        $(".snippet_part").append('<div class="left_part ">Snippet: </div>');
        $(".snippet_part").append('<div class="right_part rp_snippet"></div>');
-       $(".rp_snippet").append('<textarea class="question_field" name="snippet" id="add_question_text">'+ snippet +'</textarea>');
+       $(".rp_snippet").append('<textarea class="question_field" name="snippet" id="add_question_text">'+ question.snippet +'</textarea>');
     }
   });//-end ajax
 }

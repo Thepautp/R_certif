@@ -114,16 +114,12 @@ class TrainingPagesController < ApplicationController
   
   def ajax_api
     if params[:question_id]
-      question = Question.joins(:categorie).select("questions.id, questions.text, categories.label as cat, good_answer, bad_answer, rank, snippet").find_by_id(params[:question_id])
-      good_answer = question.good_answer.split(",").map!{ |s| s.to_i}  #array with answer_id as integer
-      bad_answer = question.bad_answer.split(",").map!{ |s| s.to_i}    #array with answer_id as integer
-      all_good_answer = Answer.find(good_answer)
-      all_wrong_answer = Answer.find(bad_answer)
+      question = Question.find_by_id(params[:question_id])
     end
     if request.xhr?
       respond_to do |format|
         format.json {
-          render json: {good: all_good_answer, wrong: all_wrong_answer, rank: question.rank, snippet: question.snippet}
+          render json: {question: question, good: question.good_answers, wrong: question.bad_answers}
         }
       end
     end
