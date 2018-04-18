@@ -1,7 +1,7 @@
 class TrainingPagesController < ApplicationController
   def new
-    all_question = Question.all
-    
+    @difficulty = params[:start][:level].to_i
+    all_question = Question.where(rank: @difficulty)
     if all_question.empty?
       render "shared/default"
     else
@@ -121,4 +121,7 @@ class TrainingPagesController < ApplicationController
     end
   end
   
+  def home
+    
+  end
 end
