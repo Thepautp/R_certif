@@ -46,7 +46,9 @@ class TrainingPagesController < ApplicationController
     if params[:add_question]
       is_correct_question = true
       params[:add_question].each do |k,v|
-        is_correct_question = false if v.blank?
+        unless k.eql? "snippet"
+          is_correct_question = false if v.blank?
+        end
       end
       if is_correct_question
         question_to_add = Question.new( categorie_id: params[:add_question][:categorie].to_i,
