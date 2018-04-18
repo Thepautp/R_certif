@@ -85,7 +85,7 @@ class TrainingPagesController < ApplicationController
   
   def question_manage
     @questions = Question.all
-    if params[:question_update]
+    unless params[:question_update][:question].empty?
       question = Question.find_by_id(params[:question_update][:question])
       question.good_answers.each_with_index do |ga, i|
         unless ga.wording.eql? params[:good_answer_wording][i]
