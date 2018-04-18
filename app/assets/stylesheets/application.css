@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+ #wrapper{
+   width: 70%;
+   margin: auto;
+   justify-content: center;
+ }
+ 
+ /* general */
+ .hidden_field{
+   visibility: hidden;
+ }
+ .btn {
+   cursor: pointer;
+ }
