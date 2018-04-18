@@ -25,11 +25,11 @@
       <%= submit_tag "Update Question", id: "btn_update"%>
     </div>
     <div class="destroy_question">
-      <!-- <%= button_to "Delete question", admin_question_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "del_btn btn"%> -->
+      <%= button_to "Delete question", admin_question_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "del_btn btn"%>
     </div>
+    <% end %>
     <div class="return">
       <%= button_to "Return", admin_path, method: :get, class: "return_btn btn"%>
     </div>
-    <% end %>
   </div>
 </div>

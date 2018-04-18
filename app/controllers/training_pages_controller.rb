@@ -44,39 +44,31 @@ class TrainingPagesController < ApplicationController
   def add_question
     @categories = Categorie.all    
     if params[:add_question]
-      wrong_answers_arr = []
       is_correct_question = true
-      num_good_answer = 0
       params[:add_question].each do |k,v|
         is_correct_question = false if v.blank?
-        3.times do |i|
-          if k.eql? "good_answer_#{i+1}"
-            num_good_answer +=1
-          end
-        end
       end
       if is_correct_question
-        good_answers_arr = []
-        num_good_answer.times do |i|
-          temp = Answer.new(text: params[:add_question]["good_answer_#{i+1}"], reason: params[:add_question]["good_reason_#{i+1}"])
-          temp.save!
-          good_answers_arr << temp.id.to_s
-        end
-        wrong_answers_arr = []
-        4.times do |i|
-          temp = Answer.new(text: params[:add_question]["bad_answer_#{i+1}"], reason: params[:add_question]["bad_reason_#{i+1}"])
-          temp.save!
-          wrong_answers_arr << temp.id.to_s
-        end
-        good_answers = good_answers_arr.join(",")
-        wrong_answers = wrong_answers_arr.join(",")
         question_to_add = Question.new( categorie_id: params[:add_question][:categorie].to_i,
-                                        text: params[:add_question][:text], good_answer: good_answers,
-                                        bad_answer: wrong_answers,
-                                        rank: params[:add_question][:level],
-                                        snippet: params[:add_question][:snippet])
+                                          text: params[:add_question][:text],
+                                          rank: params[:add_question][:level],
+                                          snippet: params[:add_question][:snippet])
         question_to_add.save
-        @msg = "Question created with success"
+        num_good_answer = 0
+        params[:add_question].each do |k,v|
+          3.times do |i|
+            if k.eql? "good_answer_#{i+1}"
+              num_good_answer +=1
+            end
+          end
+        end
+        num_good_answer.times do |i|
+          GoodAnswer.create(question_id: question_to_add.id, wording: params[:add_question]["good_answer_#{i+1}"], reason: params[:add_question]["good_reason_#{i+1}"])
+        end
+        4.times do |i|
+          BadAnswer.create(question_id: question_to_add.id, wording: params[:add_question]["bad_answer_#{i+1}"], reason: params[:add_question]["bad_reason_#{i+1}"])
+        end        
+        @msg = "Question created with success"        
       else
         @msg = "Empty field"
       end
