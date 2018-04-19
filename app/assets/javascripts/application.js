@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
+// require turbolinks disable because cancel automatically re trigger post when refresh page
 //= require_tree .
 $(document).ready(function() {
   $(".add_field").click(function(){
