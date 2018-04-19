@@ -19,7 +19,8 @@ class TrainingPagesController < ApplicationController
   
   def result
       question_id = params[:response][:question_id]
-      user_answer = params[:response][:answer_id]
+      user_answer = params[:response][:answer_id] ? params[:response][:answer_id] : ""
+      
       @question = Question.find(question_id)
       good_answers = @question.good_answers.map{|g| [g.id,g.wording]}
       if user_answer.class == String
