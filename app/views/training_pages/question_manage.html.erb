@@ -20,20 +20,22 @@
           
         </div>
       </div>
+      <div class="submit_panel">
+        <%= submit_tag "Update Question", id: "btn_update"%>
+      </div>
+      <% end %>
     </div>
-    <div class="submit_panel">
-      <%= submit_tag "Update Question", id: "btn_update"%>
-    </div>
-    <% end %>
-    <%= form_for(:delete, url: admin_question_url, html:{id: 'form_delete'})do |f| %>
+    <div class="delete_panel">
+      <%= form_for(:delete, url: admin_question_url, html:{id: 'form_delete'})do |f| %>
       <div class="question_part">
-          <%= f.label "Choose a question:" %>
-          <%= f.select :question, options_for_select(@questions.collect {|p| [ "#{p.id}- #{p.text}", p.id]}), include_blank: "~~~~ Choose one question ~~~~"  %>
+        <%= f.label "Choose a question:" %>
+        <%= f.select :question, options_for_select(@questions.collect {|p| [ "#{p.id}- #{p.text}", p.id]}), include_blank: "~~~~ Choose one question ~~~~"  %>
       </div>
       <div class="destroy_question">
         <%= button_to "Delete question", admin_question_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "del_btn btn"%>
       </div>
-    <% end %>
+      <% end %>
+    </div>
     <div class="return">
       <%= button_to "Return", admin_path, method: :get, class: "return_btn btn"%>
     </div>
