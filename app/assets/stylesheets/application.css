@@ -13,16 +13,26 @@
  *= require_tree .
  *= require_self
  */
- #wrapper{
-   width: 70%;
-   margin: auto;
-   justify-content: center;
- }
- 
- /* general */
- .hidden_field{
-   visibility: hidden;
- }
- .btn {
-   cursor: pointer;
- }
+#wrapper{
+  width: 70%;
+  margin: auto;
+  justify-content: center;
+}
+
+/* general */
+.hidden_field{
+  visibility: hidden;
+}
+.btn {
+  cursor: pointer;
+}
+.home_wrap{
+  width: 100%;
+}
+.difficulty {
+  width: 50%;
+  margin: 0 auto;
+}
+.home_title{
+  text-align: center;
+}
