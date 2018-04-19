@@ -1,16 +1,16 @@
 questions_list = [
   [8,"Which of the following are NOT reserved words in Ruby?",0,
-    [["try","Is not a reserved word"],["goto","Is not a reserved word"]],
-    [["super","Is a reserved word"],["begin","Is a reserved word"],["alias","Is a reserved word"]]
+    [["try","Not a reserved word"],["goto","Not a reserved word"]],
+    [["super","Reserved word"],["begin","Reserved word"],["alias","Reserved word"]]
   ],
   [1,"Which of the following is the correct output for the program given below?",0,
     [["1","a is defined and will be returned"]],
-    [["nil",""],["An error has occurred",""],["[1,2,3,4]",""],["[1]",""]],
+    [["nil","foo will return a"],["An error has occurred","the code is correct"],["[1,2,3,4]","only *b return an array so [2,3,4]"],["[1]","first params is not returned as an array"]],
     "def foo (a,  *b) p  a end foo(1,2,3,4)"
   ],
   [9,"Which of the following is the correct output for the program given below?",0,
-    [["2","Return the number of key/pairs"]],
-    [["15",""],["6",""],["4",""]],
+    [["2","Returns the number of key-value pairs"]],
+    [["15","No reason"],["6","No reason"],["4","No returns of key AND value number"]],
     'puts({"members" => 193, "year" => 2014}.size)'
   ]
 ]
@@ -21,6 +21,5 @@ questions_list.each do |q|
   end
   q[4].each do |bad|
     question.bad_answers.create(wording: bad[0], reason: bad[1])
-  end
-  
+  end  
 end
