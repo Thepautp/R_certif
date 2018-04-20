@@ -9,30 +9,31 @@ class QuestionsController < ApplicationController
   end
   
   def show
-    @difficulty = params[:start][:level].to_i
-    all_question = Question.where(rank: @difficulty)
-    if all_question.empty?
-      render "shared/default"
-    else
-      @question = all_question[rand(all_question.size)]
-      @answers = []
-      @question.good_answers.each do |g|
-        @answers << g
+    if params[:start]
+      @difficulty = params[:start][:level].to_i
+      all_question = Question.where(rank: @difficulty)
+      if all_question.empty?
+        render "shared/default"
+      else
+        @question = all_question[rand(all_question.size)]
+        @answers = []
+        @question.good_answers.each do |g|
+          @answers << g
+        end
+        @question.bad_answers.each do |b|
+          @answers << b
+        end
+        @answers.shuffle!
       end
-      @question.bad_answers.each do |b|
-        @answers << b
-      end
-      @answers.shuffle!
     end
-    
     if params[:question_id]
       question = Question.find_by_id(params[:question_id])
-    end
-    if request.xhr?
-      respond_to do |format|
-        format.json {
-          render json: {question: question, good: question.good_answers, wrong: question.bad_answers}
-        }
+      if request.xhr?
+        respond_to do |format|
+          format.json {
+            render json: {question: question, good: question.good_answers, wrong: question.bad_answers}
+          }
+        end
       end
     end
   end
@@ -114,6 +115,6 @@ class QuestionsController < ApplicationController
       question = Question.find(params[:delete][:question].to_i)
       question.destroy
     end
-    redirect_to admin_question_path
+    redirect_to question_edit_path
   end
 end

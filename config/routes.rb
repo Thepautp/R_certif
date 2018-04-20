@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   post "result", to: "training_pages#result"
   get 'question/new', to: "questions#new"
   get 'question/show', to: "questions#show"
+  post 'question/show', to: "questions#show"
   get 'question/edit', to: "questions#edit"
   post 'question/create', to: "questions#create"
   post 'question/update', to: "questions#update"
-  get 'question/delete', to: "questions#destroy"
+  delete 'question/delete', to: "questions#destroy"
   root "training_pages#home"
-  # get '*path' => redirect('/')
+  get '*path' => redirect('/')
 end

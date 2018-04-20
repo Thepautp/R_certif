@@ -61,7 +61,7 @@ function delField(){
 function recoverData() {
   var question_id = $("#question_update_question").val();
   $.ajax({
-    url: "show/",
+    url: "show",
     method: "GET",
     dataType: "json",
     data: {question_id: question_id},
