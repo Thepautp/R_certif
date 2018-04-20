@@ -1,6 +1,6 @@
 <div class="question_manage_wrap">
   <div class="question_manage">
-    <%= form_for(:question_update, url: admin_question_path, html: {id: 'form_update_question'}) do |f| %>
+    <%= form_for(:question_update, url: question_update_path, html: {id: 'form_update_question'}) do |f| %>
     <div class="change_panel">
       <div class="question_part">
           <%= f.label "Choose a question:" %>
@@ -37,7 +37,7 @@
       <% end %>
     </div>
     <div class="return">
-      <%= button_to "Return", admin_path, method: :get, class: "return_btn btn"%>
+      <%= button_to "Return", question_create_path, method: :get, class: "return_btn btn"%>
     </div>
   </div>
 </div>

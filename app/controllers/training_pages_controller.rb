@@ -41,43 +41,7 @@ class TrainingPagesController < ApplicationController
         end
       end
   end
-  
-  def add_question
-    @categories = Categorie.all    
-    if params[:add_question]
-      is_correct_question = true
-      params[:add_question].each do |k,v|
-        unless k.eql? "snippet"
-          is_correct_question = false if v.blank?
-        end
-      end
-      if is_correct_question
-        question_to_add = Question.new( categorie_id: params[:add_question][:categorie].to_i,
-                                          text: params[:add_question][:text],
-                                          rank: params[:add_question][:level],
-                                          snippet: params[:add_question][:snippet])
-        question_to_add.save
-        num_good_answer = 0
-        params[:add_question].each do |k,v|
-          3.times do |i|
-            if k.eql? "good_answer_#{i+1}"
-              num_good_answer +=1
-            end
-          end
-        end
-        num_good_answer.times do |i|
-          GoodAnswer.create(question_id: question_to_add.id, wording: params[:add_question]["good_answer_#{i+1}"], reason: params[:add_question]["good_reason_#{i+1}"])
-        end
-        4.times do |i|
-          BadAnswer.create(question_id: question_to_add.id, wording: params[:add_question]["bad_answer_#{i+1}"], reason: params[:add_question]["bad_reason_#{i+1}"])
-        end        
-        @msg = "Question created with success"        
-      else
-        @msg = "Empty field"
-      end
-    end
-  end
-  
+
   def question_manage
     @questions = Question.all
     if params[:question_update]

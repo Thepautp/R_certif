@@ -4,7 +4,7 @@
       <%= @msg %>
     </div>
   <% end %>
-  <%= form_for(:add_question, url: admin_path, html: {id: 'form_add_question'}) do |f| %>
+  <%= form_for(:add_question, url: question_create_path, html: {id: 'form_add_question'}) do |f| %>
     <div class="input_wrap">
       <div class="input_label">
         <%= f.label "Categorie:" %>
@@ -82,6 +82,6 @@
     </div>
   <% end %>
   <div class="q_manage btn">
-    <%= button_to "Manage question", admin_question_path, method: :get, class: "to_question_btn btn"%>
+    <%= button_to "Edit questions", question_edit_path, method: :get, class: "to_question_btn btn"%>
   </div>
 </div>

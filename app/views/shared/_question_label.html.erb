@@ -16,7 +16,7 @@
         <%= question.text %>
         (Choose <strong><%= question.good_answers.count %></strong> )
       </div>
-      <% if question.snippet %>
+      <% unless question.snippet.blank? %>
         <div class="question_snippet">
           <pre><%= question.snippet %></pre>
         </div>
