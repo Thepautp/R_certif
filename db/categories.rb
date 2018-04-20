@@ -1,11 +1,39 @@
-categories = [
-  "Method", "Class", "Scope", "Loop", "Regex", "Object", "Array", "Keyword",
-  "Hash", "Symbol", "Block", "Iterator", "I/O", "Variable", "Constant",
-  "String", "Number", "Range", "Module", "Inheritance", "Mixin", "Operator",
-  "Encoding", "Alias", "Exception", "Conditional", "Kernel", "Comment",
-  "Command line", "Pre-defined", "Non local exit", "Lambda", "Proc", "Thread",
-  "Time"
-]
-categories.each do |cat|
-  Categorie.create( label: cat)
-end
+Categorie.create!([
+  {label: "Method"},
+  {label: "Class"},
+  {label: "Scope"},
+  {label: "Loop"},
+  {label: "Regex"},
+  {label: "Object"},
+  {label: "Array"},
+  {label: "Keyword"},
+  {label: "Hash"},
+  {label: "Symbol"},
+  {label: "Block"},
+  {label: "Iterator"},
+  {label: "I/O"},
+  {label: "Variable"},
+  {label: "Constant"},
+  {label: "String"},
+  {label: "Number"},
+  {label: "Range"},
+  {label: "Module"},
+  {label: "Inheritance"},
+  {label: "Mixin"},
+  {label: "Operator"},
+  {label: "Encoding"},
+  {label: "Alias"},
+  {label: "Exception"},
+  {label: "Conditional"},
+  {label: "Kernel"},
+  {label: "Comment"},
+  {label: "Command line"},
+  {label: "Pre-defined"},
+  {label: "Non local exit"},
+  {label: "Lambda"},
+  {label: "Proc"},
+  {label: "Thread"},
+  {label: "Time"},
+  {label: "File"},
+  {label: "Enumerable"}
+])

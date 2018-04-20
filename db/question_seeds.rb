@@ -1,25 +1,47 @@
-questions_list = [
-  [8,"Which of the following are NOT reserved words in Ruby?",0,
-    [["try","Not a reserved word"],["goto","Not a reserved word"]],
-    [["super","Reserved word"],["begin","Reserved word"],["alias","Reserved word"]]
-  ],
-  [1,"Which of the following is the correct output for the program given below?",0,
-    [["1","a is defined and will be returned"]],
-    [["nil","foo will return a"],["An error has occurred","the code is correct"],["[1,2,3,4]","only *b return an array so [2,3,4]"],["[1]","first params is not returned as an array"]],
-    "def foo (a,  *b) p  a end foo(1,2,3,4)"
-  ],
-  [9,"Which of the following is the correct output for the program given below?",0,
-    [["2","Returns the number of key-value pairs"]],
-    [["15","No reason"],["6","No reason"],["4","No returns of key AND value number"]],
-    'puts({"members" => 193, "year" => 2014}.size)'
-  ]
-]
-questions_list.each do |q|
-  question = Question.create(categorie_id: q[0], text: q[1], rank: q[2], snippet: q[5])
-  q[3].each do |good|
-    question.good_answers.create(wording: good[0], reason: good[1])
-  end
-  q[4].each do |bad|
-    question.bad_answers.create(wording: bad[0], reason: bad[1])
-  end  
-end
+Question.create!([
+  {categorie_id: 8, text: "Which of the following are NOT reserved words in Ruby?", rank: 0, snippet: nil},
+  {categorie_id: 1, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "def foo (a,  *b)\r\n p  a\r\nend\r\nfoo(1,2,3,4)"},
+  {categorie_id: 9, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "puts({\"members\" => 193, \"year\" => 2014}.size)"},
+  {categorie_id: 35, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "t = Time.now + (60*60*24)\r\np t"},
+  {categorie_id: 14, text: "Which variable names are valid as local variables?", rank: 0, snippet: ""},
+  {categorie_id: 18, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "(1..2).each_with_index do |i,j|\r\n puts \"\#{i} \#{j}\"\r\nend"},
+  {categorie_id: 12, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "p 100.downto(90).select{|x| x%2==0}"},
+  {categorie_id: 7, text: "Which of the following can be inserted into __(1)__ in order for the given code to generate the output below?", rank: 0, snippet: "p [1,1,2,3,5,8].__(1)__ {|x| x*2}\r\n\r\n[output]\r\n [2,2,4,6,10,16]"},
+  {categorie_id: 16, text: "Which of the following is the correct output for the program given below ?", rank: 0, snippet: "puts \"Ruby on Rails\".delete(\"Rails\")"},
+  {categorie_id: 13, text: "An error occurred while trying to create a string using a here document. Which of the following solutions are appropriate?", rank: 0, snippet: "doc = <<EOF\r\n the quick brown fox\r\n jumps over the lazy dog\r\n         EOF"},
+  {categorie_id: 7, text: "Which of the following can be inserted into __(1)__  in order for the given \r\ncode to generate the output below?", rank: 0, snippet: "h = {1=>2, 3=>4} \r\nh.__(1)__ \r\np h   #=>{} \r\nary = [1, 2] \r\nary.__(1)__ \r\np ary #=>[]"},
+  {categorie_id: 7, text: "Which of the following can be inserted into __(1)__  in order for the given \r\ncode to generate the output below?", rank: 0, snippet: "a = [1,2,3,4,5]\r\np __(1)__ #=>[1,2,3]"},
+  {categorie_id: 16, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "str = \"RubyAssociation\".chomp"},
+  {categorie_id: 16, text: "Which of the following is the correct output for the program given below ?", rank: 0, snippet: "str = \"RubyAssociation\\r\".chop"},
+  {categorie_id: 13, text: "Which of the following is a correct statement about io.rewind?", rank: 0, snippet: "File.open(\"foo.txt\",\"r\")  do  |io|\r\n  puts  io.gets\r\n  puts  io.read\r\n  io.rewind\r\n  p  lines  =  io.readlines\r\nend"},
+  {categorie_id: 22, text: "Which of the following can be inserted into __(1)__  in order for the given \r\ncode to generate the output below?", rank: 0, snippet: "mozart = [\"Symphony\",\"Piano Concerto\", \"Violin Concerto\",\"Horn Concerto\",\"Violin \r\nSonata\"] \r\nlistened = [\"Symphony\",\"Violin Concerto\",\"Horn Concerto\"] \r\np mozart__(1)__listened\r\n[output] \r\n[\"Piano Concerto\",\"Violin Sonata\"]"},
+  {categorie_id: 7, text: "Which of the following is the correct output for the program given below ?", rank: 0, snippet: "odd = [1,3,5] \r\neven = [2,4,6] \r\nnum = even + odd\r\np num.sort"},
+  {categorie_id: 5, text: "Which of the following string match for the regular expression?", rank: 0, snippet: "/^[hc].*o$/i"},
+  {categorie_id: 15, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "Greeting = \"Hello Ruby\" \r\nGreeting = \"Hi Ruby\" \r\np Greeting"},
+  {categorie_id: 36, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "p File.join(\"ruby\", \"exam\",\"silver\")"},
+  {categorie_id: 2, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "class  Surface\r\n    attr_reader  :s\r\n    def  initialize(x,y)\r\n      @s  =  x  *  y\r\n    end\r\nend\r\nclass  Volume  <  Surface\r\n    attr_reader  :v\r\n    def  initialize(x,y,z)\r\n        super(x,y)\r\n        @v  =  x  *  y  *  z\r\n    end\r\nend\r\na  =  Volume.new(2,5,5)\r\nputs  \"\#{a.v},\#{a.s}\""},
+  {categorie_id: 16, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "string = \"test code\"\r\nstring.slice(0,4)\r\np string"},
+  {categorie_id: 23, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "puts \"ruby\".encoding.name"},
+  {categorie_id: 9, text: "Which of the following is NOT correct instance method in Hash class.", rank: 0, snippet: "cc = {\"nz\"=>\"New Zealand\", \"ru\"=>\"Russia\", \"ar\"=>\"Argentina\"}"},
+  {categorie_id: 6, text: "Which of the following is the correct output for the program given below ?", rank: 0, snippet: "p \"Hello there\".class\r\np String.superclass\r\nclass Foo; end\r\nclass Bar < Foo; end\r\np Foo.superclass\r\np Bar.superclass"},
+  {categorie_id: 9, text: "Which of the following can be inserted into __(1)__ , __(2)__ in order for the given code to generate the output below?", rank: 0, snippet: "s = \"To be or not to be, that is the question.\"\r\nhash = Hash.new(0)\r\ns.__(1)__(__(2)__) {|i| hash[i] += 1}\r\np hash[“be\"]\r\n[output]\r\n2"},
+  {categorie_id: 23, text: "Which is the correct explanation for builtin libraries Integer#chr(encoding)?", rank: 0, snippet: ""},
+  {categorie_id: 25, text: "Which of the following can be inserted into __(1)__ , __(2)__ in order for the given code to generate the error?", rank: 0, snippet: "s = \"foo\"\r\n___(1)___\r\ns[4] = ?b\r\n___(2)___\r\nputs \"error\"\r\nend"},
+  {categorie_id: 22, text: "Which of the following is the correct output for the program given below ?", rank: 0, snippet: "ary = []\r\nary << 1 && false\r\ntrue || ary << 2\r\nfalse && ary << 3\r\nfalse || ary << 4\r\np ary"},
+  {categorie_id: 16, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "p \"foo\" * 2 **2"},
+  {categorie_id: 16, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "puts \"0123456789\".delete(\"0-­58-­\")"},
+  {categorie_id: 2, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "class Object\r\n  def greeting\r\n    print \"How are you?\\n\"\r\n  end\r\nend\r\n[1,2].greeting"},
+  {categorie_id: 7, text: "Which of the following can be inserted into __(1)__ , __(2)__ in order for the given code to generate the output below?", rank: 0, snippet: "p \"100,200,300,400,500\".__(1)__.__(2)__\r\n\r\n[output]\r\n\"100\\n200\\n300\\n400\\n500\""},
+  {categorie_id: 7, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "numbers = [3,89,40,39,29,10,50,59,69]\r\nnum = numbers.inject do |i,j|\r\n i > j ? i : j\r\nend\r\np num"},
+  {categorie_id: 2, text: "Which of the following can be inserted into __(1)__ in order for the given code to generate the output below?", rank: 0, snippet: "class Foo\r\n  __(1)__ = 0\r\n  def self.count\r\n    __(1)__ += 1\r\n  end\r\nend\r\nclass Bar < Foo\r\nend\r\nputs Foo.count\r\nputs Bar.count\r\n[output]\r\n1\r\n2"},
+  {categorie_id: 17, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "num = 012\r\nputs num"},
+  {categorie_id: 7, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "\"a\".upto(\"f\").to_a"},
+  {categorie_id: 22, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "unless false || nil \r\n  print \"Hello\\n\" \r\nend"},
+  {categorie_id: 36, text: "An IOError has occurred while running the program. Which of the following explain is the correct about the reason of the error?", rank: 0, snippet: "File.open(\"foo.txt\") do |io|\r\n  io.write(Time.now.strftime(\"%Y/%m/%d\"))\r\nend"},
+  {categorie_id: 1, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "numbers = (1..20).to_a \r\np numbers.detect{|x| x % 5 == 0}"},
+  {categorie_id: 17, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "puts \"\#{0xA},\#{012}\""},
+  {categorie_id: 5, text: "Which of the following string match for the regular expression?", rank: 0, snippet: "/[0-­9]{3}-­[0­‐9]{4}/"},
+  {categorie_id: 25, text: "Which of the following is the correct output for the program given below?", rank: 0, snippet: "class NonasciiError < StandardError\r\nend\r\nFile.open(\"sample.txt\") do |io|\r\n  io.each_line do |str|\r\n    begin\r\n      raise(NonasciiError, \"non ascii character detected\") unless str.ascii_only?\r\n    rescue => ex\r\n      puts \"\#{ex.message} : \#{str}\"\r\n    end\r\n  end\r\nend\r\n[sample.txt]\r\nRuby Association\r\nルビー\r\nЛУЧШИЙ ДРУГ ПРОГРАММИСТА\r\nRuby on Rails"},
+  {categorie_id: 9, text: "Which of the following causes a syntax error?", rank: 0, snippet: ""},
+  {categorie_id: 13, text: "Which methods are accept a single line of data from the I/O stream.", rank: 0, snippet: ""}
+])
