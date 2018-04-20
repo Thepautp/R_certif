@@ -1,5 +1,6 @@
 <div class="result_wrap">
  <div class="result">
+      <%= image_tag  @is_good_answer ? "thumbs_up.png" : "thumbs_down.png" %>
       <%= @is_good_answer ? "GOOD answer" : "WRONG answer" %>
     </div>
     <div class="all_good">
