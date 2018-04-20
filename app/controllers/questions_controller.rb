@@ -9,9 +9,9 @@ class QuestionsController < ApplicationController
   end
   
   def show
-    if params[:start]
-      @difficulty = params[:start][:level].to_i
-      all_question = Question.where(rank: @difficulty)
+    if params[:continue]
+      @difficulty = params[:continue][:level].to_i
+      all_question = Question.where(rank: @difficulty).where.not(id: params[:continue][:unwanted].to_i)
       if all_question.empty?
         render "shared/default"
       else
