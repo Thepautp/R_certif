@@ -26,18 +26,18 @@
       <% end %>
     </div>
     <div class="delete_panel">
-      <%= form_for(:delete, url: admin_question_url, html:{id: 'form_delete'})do |f| %>
+      <%= form_for(:delete, url: question_delete_path, html:{id: 'form_delete'})do |f| %>
       <div class="question_part">
         <%= f.label "Choose a question:" %>
         <%= f.select :question, options_for_select(@questions.collect {|p| [ "#{p.id}- #{p.text}", p.id]}), include_blank: "~~~~ Choose one question ~~~~"  %>
       </div>
       <div class="destroy_question">
-        <%= button_to "Delete question", admin_question_url, method: :delete, data: { confirm: 'Are you sure?' }, class: "del_btn btn"%>
+        <%= button_to "Delete question", question_delete_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "del_btn btn"%>
       </div>
       <% end %>
     </div>
     <div class="return">
-      <%= button_to "Return", question_create_path, method: :get, class: "return_btn btn"%>
+      <%= button_to "Return", question_new_path, method: :get, class: "return_btn btn"%>
     </div>
   </div>
 </div>

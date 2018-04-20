@@ -21,6 +21,6 @@
       <% end %>
     </div>
     <div class="next_question">
-      <%= button_to "next question", training_path, method: :post, params: {start: {level: @difficulty}}, class: "next_btn btn"%>
+      <%= button_to "next question", question_show_path, method: :get, params: {start: {level:1}}, class: "next_btn btn"%>
     </div>
 </div>

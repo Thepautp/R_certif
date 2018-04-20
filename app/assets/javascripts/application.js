@@ -61,7 +61,7 @@ function delField(){
 function recoverData() {
   var question_id = $("#question_update_question").val();
   $.ajax({
-    url: "/admin/ajax",
+    url: "show/",
     method: "GET",
     dataType: "json",
     data: {question_id: question_id},
@@ -72,7 +72,6 @@ function recoverData() {
       var question = response["question"]
       var good_answers = response["good"];
       var wrong_answers = response["wrong"];
-      console.log(question.snippet);
       if ( question.snippet == null){
         question.snippet = "";
       }
