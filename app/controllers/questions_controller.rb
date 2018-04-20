@@ -9,9 +9,10 @@ class QuestionsController < ApplicationController
   end
   
   def show
+    # params[:continue] defined during training
     if params[:continue]
       @difficulty = params[:continue][:level].to_i
-      all_question = Question.where(rank: @difficulty).where.not(id: params[:continue][:unwanted].to_i)
+      all_question = Question.where(rank: @difficulty).where.not(id: params[:continue][:unwanted].to_i)      
       if all_question.empty?
         render "shared/default"
       else
@@ -26,6 +27,7 @@ class QuestionsController < ApplicationController
         @answers.shuffle!
       end
     end
+    # params[:question_id] defined during question update => ajax
     if params[:question_id]
       question = Question.find_by_id(params[:question_id])
       if request.xhr?
@@ -37,6 +39,7 @@ class QuestionsController < ApplicationController
       end
     end
   end
+  
   def create
     @categories = Categorie.all
     if params[:add_question]

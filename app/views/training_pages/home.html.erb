@@ -1,7 +1,7 @@
 <div class="home_wrap">
   <div class="difficulty">
     <p>Choose a difficulty:</p>
-    <%= form_for(:start, url: question_show_path, html: {id: 'form_rank'}) do |f| %>
+    <%= form_for(:continue, url: question_show_path, html: {id: 'form_rank'}) do |f| %>
       <div>
         <ul class="difficulty_radio">
           <li><%= f.radio_button :level, 0, {required: 'required'} %>silver</li>
