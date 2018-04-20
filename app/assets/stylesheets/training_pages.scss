@@ -1,48 +1,7 @@
 // Place all the styles related to the TrainingPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-/* PARTIAL: question_label */
-.question_wrap, .response_wrap {
-  width: 70%;
-  margin: auto;
-}
-.question_wrap {
-  display: flex;
-  flex-direction: row;
-}
-.question_data {
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  margin: 25px;
-}
-.question_detail {
-  display: flex;
-  flex-direction: column;
-  margin: 25px;
-}
-.question_cat, .question_rank {
-  font-style: italic;
-}
 
-.del_field, .add_field{
-  cursor: pointer;
-  margin-left: 15px;
-  padding: 1px 3px;
-  border: 1px solid #aaaaaa;
-}
-.response_wrap li{
-  list-style-type: none;
-}
-.question_snippet {
-  background-color: rgb(224, 224, 235);
-  border: 1px solid #b3b3cc;
-  border-radius: 5px;
-  padding: 5px;
-}
-.question_lib {
-  margin-bottom: 10px;
-}
 /* Result  */
 .result_wrap {
   text-align: justify;

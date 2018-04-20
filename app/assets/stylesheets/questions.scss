@@ -4,3 +4,59 @@
 .change_panel {
   margin-bottom: 50px;
 }
+
+
+.question_wrap {
+  width: 70%;
+  margin: auto;
+}
+.question_wrap {
+  display: flex;
+  flex-direction: row;
+  height: 170px;
+}
+.question_data {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin: 25px 0px;
+}
+.question_detail {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+}
+.question_cat, .question_rank {
+  font-style: italic;
+}
+.del_field, .add_field{
+  cursor: pointer;
+  margin-left: 15px;
+  padding: 1px 3px;
+  border: 1px solid #aaaaaa;
+}
+.question_snippet {
+  background-color: rgb(224, 224, 235);
+  border: 1px solid #b3b3cc;
+  border-radius: 5px;
+  padding: 5px;
+}
+.question_lib {
+  margin-bottom: 10px;
+}
+
+/* PARTIAL: question_choice */
+.response_wrap {
+  width: 70%;
+  margin: auto;
+  height: 200px;
+}
+.response_wrap li{
+  list-style-type: none;
+}
+.response_wrap ul{
+  padding: 0;
+}
+.question_submit_wrap {
+  height: 50px;
+}
