@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post "result", to: "training_pages#result"
   get 'questions/destroy'
   root "training_pages#home"
+  get '*path' => redirect('/')
 end
